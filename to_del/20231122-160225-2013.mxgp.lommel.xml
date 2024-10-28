@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PiBoSoXML version="1.0">
+<Source>MX Bikes</Source>
+<Results>
+	<Track>
+		<Name>MXGP 2013 Lommel</Name>
+		<Length>2233.792969</Length>
+	</Track>
+	<Event>
+		<Type>OpenPractice</Type>
+		<Name>NameEvent</Name>
+		<Date>1700668945</Date>
+	</Event>
+	<Entries>
+		<Entry>
+			<RaceNum>113</RaceNum>
+			<Name>Crv113 | LMC x First Racing</Name>
+			<Bike>Kawasaki KX250 2023</Bike>
+			<Category>MX2 OEM</Category>
+			<GUID>FF01100001097487CA</GUID>
+			<Extra></Extra>
+		</Entry>
+		<Entry>
+			<RaceNum>112</RaceNum>
+			<Name>Corvii112</Name>
+			<Bike>Kawasaki KX250 2023</Bike>
+			<Category>MX2 OEM</Category>
+			<GUID>FF0110000108A0F356</GUID>
+			<Extra></Extra>
+		</Entry>
+		<Entry>
+			<RaceNum>13</RaceNum>
+			<Name>Dorian Marrot | Mostra x Kutvek</Name>
+			<Bike>Kawasaki KX250 2023</Bike>
+			<Category>MX2 OEM</Category>
+			<GUID>FF01100001075F0FE1</GUID>
+			<Extra></Extra>
+		</Entry>
+		<Entry>
+			<RaceNum>124</RaceNum>
+			<Name>Victor G | Mostra x Kutvek</Name>
+			<Bike>Honda CRF250R 2023</Bike>
+			<Category>MX2 OEM</Category>
+			<GUID>FF01100001097FFCCD</GUID>
+			<Extra></Extra>
+		</Entry>
+		<Entry>
+			<RaceNum>59</RaceNum>
+			<Name>Dorian Marrot | Mostra x Kutvek</Name>
+			<Bike>Honda CRF250R 2023</Bike>
+			<Category>MX2 OEM</Category>
+			<GUID>FF01100001075F0FE1</GUID>
+			<Extra></Extra>
+		</Entry>
+		<Entry>
+			<RaceNum>270</RaceNum>
+			<Name>Corvii112</Name>
+			<Bike>Husqvarna FC 250 2023</Bike>
+			<Category>MX2 OEM</Category>
+			<GUID>FF0110000108A0F356</GUID>
+			<Extra></Extra>
+		</Entry>
+		<Entry>
+			<RaceNum>284</RaceNum>
+			<Name>Harvey | Privateer</Name>
+			<Bike>KTM 350 SX-F 2023</Bike>
+			<Category>MX1 OEM</Category>
+			<GUID>FF011000013E2E9BD1</GUID>
+			<Extra></Extra>
+		</Entry>
+		<Entry>
+			<RaceNum>193</RaceNum>
+			<Name>Crv113 | LMC x First Racing</Name>
+			<Bike>Honda CRF250R 2023</Bike>
+			<Category>MX2 OEM</Category>
+			<GUID>FF01100001097487CA</GUID>
+			<Extra></Extra>
+		</Entry>
+		<Entry>
+			<RaceNum>903</RaceNum>
+			<Name>alfie</Name>
+			<Bike>Yamaha YZ250F 2024</Bike>
+			<Category>MX2 OEM</Category>
+			<GUID>FF0110000157F2246F</GUID>
+			<Extra></Extra>
+		</Entry>
+		<Entry>
+			<RaceNum>5</RaceNum>
+			<Name>TANG | Adrift Racing</Name>
+			<Bike>Kawasaki KX250 2023</Bike>
+			<Category>MX2 OEM</Category>
+			<GUID>FF0110000144C1736B</GUID>
+			<Extra></Extra>
+		</Entry>
+		<Entry>
+			<RaceNum>42</RaceNum>
+			<Name>big daddy/coastal racing</Name>
+			<Bike>KTM 450 SX-F 2023</Bike>
+			<Category>MX1 OEM</Category>
+			<GUID>FF0110000139D718C0</GUID>
+			<Extra></Extra>
+		</Entry>
+		<Entry>
+			<RaceNum>666</RaceNum>
+			<Name>Corvy666 | Red Head factory</Name>
+			<Bike>Kawasaki KX250 2023</Bike>
+			<Category>MX2 OEM</Category>
+			<GUID>FF011000010A24C7FF</GUID>
+			<Extra></Extra>
+		</Entry>
+	</Entries>
+	<OpenPractice>
+		<Length>0</Length>
+		<Weather>
+			<Conditions>Clear</Conditions>
+			<AirTemperature>0.000000</AirTemperature>
+		</Weather>
+		<Classification>
+			<Entry Num="0">
+				<RaceNum>59</RaceNum>
+				<Pos>1</Pos>
+				<LapTime>122.005127</LapTime>
+				<Lap>9</Lap>
+				<Total>10</Total>
+				<Gap>-</Gap>
+				<Speed>18.309010</Speed>
+			</Entry>
+			<Entry Num="1">
+				<RaceNum>124</RaceNum>
+				<Pos>2</Pos>
+				<LapTime>123.767578</LapTime>
+				<Lap>28</Lap>
+				<Total>28</Total>
+				<Gap>1.762451</Gap>
+				<Speed>18.048288</Speed>
+			</Entry>
+			<Entry Num="2">
+				<RaceNum>13</RaceNum>
+				<Pos>3</Pos>
+				<LapTime>124.175537</LapTime>
+				<Lap>8</Lap>
+				<Total>15</Total>
+				<Gap>2.170410</Gap>
+				<Speed>17.988995</Speed>
+			</Entry>
+			<Entry Num="3">
+				<RaceNum>5</RaceNum>
+				<Pos>4</Pos>
+				<LapTime>130.825806</LapTime>
+				<Lap>4</Lap>
+				<Total>4</Total>
+				<Gap>8.820679</Gap>
+				<Speed>17.074560</Speed>
+			</Entry>
+			<Entry Num="4">
+				<RaceNum>284</RaceNum>
+				<Pos>5</Pos>
+				<LapTime>134.941162</LapTime>
+				<Lap>7</Lap>
+				<Total>7</Total>
+				<Gap>12.936035</Gap>
+				<Speed>16.553829</Speed>
+			</Entry>
+			<Entry Num="5">
+				<RaceNum>270</RaceNum>
+				<Pos>6</Pos>
+				<LapTime>141.627930</LapTime>
+				<Lap>1</Lap>
+				<Total>8</Total>
+				<Gap>19.622803</Gap>
+				<Speed>15.772264</Speed>
+			</Entry>
+			<Entry Num="6">
+				<RaceNum>113</RaceNum>
+				<Pos>7</Pos>
+				<LapTime>142.886719</LapTime>
+				<Lap>11</Lap>
+				<Total>14</Total>
+				<Gap>20.881592</Gap>
+				<Speed>15.633314</Speed>
+			</Entry>
+			<Entry Num="7">
+				<RaceNum>112</RaceNum>
+				<Pos>8</Pos>
+				<LapTime>148.507446</LapTime>
+				<Lap>13</Lap>
+				<Total>15</Total>
+				<Gap>26.502319</Gap>
+				<Speed>15.041623</Speed>
+			</Entry>
+			<Entry Num="8">
+				<RaceNum>666</RaceNum>
+				<Pos>9</Pos>
+				<LapTime>149.373413</LapTime>
+				<Lap>4</Lap>
+				<Total>4</Total>
+				<Gap>27.368286</Gap>
+				<Speed>14.954421</Speed>
+			</Entry>
+			<Entry Num="9">
+				<RaceNum>193</RaceNum>
+				<Pos>10</Pos>
+				<LapTime>156.270020</LapTime>
+				<Lap>2</Lap>
+				<Total>5</Total>
+				<Gap>34.264893</Gap>
+				<Speed>14.294443</Speed>
+			</Entry>
+			<Entry Num="10">
+				<RaceNum>903</RaceNum>
+				<Pos>11</Pos>
+				<LapTime>169.781982</LapTime>
+				<Lap>1</Lap>
+				<Total>2</Total>
+				<Gap>47.776855</Gap>
+				<Speed>13.156832</Speed>
+			</Entry>
+			<Entry Num="11">
+				<RaceNum>42</RaceNum>
+				<Pos>12</Pos>
+				<LapTime>198.290833</LapTime>
+				<Lap>2</Lap>
+				<Total>5</Total>
+				<Gap>76.285706</Gap>
+				<Speed>11.265236</Speed>
+			</Entry>
+		</Classification>
+		<Analysis>
+			<Entry Num="0">
+				<RaceNum>59</RaceNum>
+				<Lap Num="0">
+					<LapTime>123.481934</LapTime>
+					<T1>42.142090</T1>
+					<T2>72.717285</T2>
+					<Speed>18.090038</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="1">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="2">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="3">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="4">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="5">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="6">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="7">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="8">
+					<LapTime>122.005127</LapTime>
+					<T1>41.738770</T1>
+					<T2>72.041504</T2>
+					<Speed>18.309010</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="9">
+					<LapTime>-</LapTime>
+				</Lap>
+			</Entry>
+			<Entry Num="1">
+				<RaceNum>124</RaceNum>
+				<Lap Num="0">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="1">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="2">
+					<LapTime>128.057251</LapTime>
+					<T1>43.280396</T1>
+					<T2>74.482544</T2>
+					<Speed>17.443705</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="3">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="4">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="5">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="6">
+					<LapTime>127.763062</LapTime>
+					<T1>43.451050</T1>
+					<T2>73.433472</T2>
+					<Speed>17.483871</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="7">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="8">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="9">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="10">
+					<LapTime>127.365356</LapTime>
+					<T1>44.432373</T1>
+					<T2>75.640747</T2>
+					<Speed>17.538465</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="11">
+					<LapTime>125.120972</LapTime>
+					<T1>43.846069</T1>
+					<T2>74.219971</T2>
+					<Speed>17.853065</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="12">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="13">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="14">
+					<LapTime>126.871582</LapTime>
+					<T1>43.925537</T1>
+					<T2>74.308105</T2>
+					<Speed>17.606724</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="15">
+					<LapTime>132.192627</LapTime>
+					<T1>42.521484</T1>
+					<T2>77.820068</T2>
+					<Speed>16.898014</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="16">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="17">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="18">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="19">
+					<LapTime>133.197266</LapTime>
+					<T1>43.613770</T1>
+					<T2>74.353271</T2>
+					<Speed>16.770561</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="20">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="21">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="22">
+					<LapTime>125.069580</LapTime>
+					<T1>43.263428</T1>
+					<T2>73.903564</T2>
+					<Speed>17.860401</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="23">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="24">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="25">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="26">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="27">
+					<LapTime>123.767578</LapTime>
+					<T1>43.173584</T1>
+					<T2>73.594971</T2>
+					<Speed>18.048288</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+			</Entry>
+			<Entry Num="2">
+				<RaceNum>13</RaceNum>
+				<Lap Num="0">
+					<LapTime>131.040131</LapTime>
+					<T1>43.805908</T1>
+					<T2>74.137299</T2>
+					<Speed>17.046633</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="1">
+					<LapTime>124.356628</LapTime>
+					<T1>42.707458</T1>
+					<T2>73.015747</T2>
+					<Speed>17.962797</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="2">
+					<LapTime>138.657166</LapTime>
+					<T1>42.331360</T1>
+					<T2>73.464539</T2>
+					<Speed>16.110188</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="3">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="4">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="5">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="6">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="7">
+					<LapTime>124.175537</LapTime>
+					<T1>42.116455</T1>
+					<T2>72.249268</T2>
+					<Speed>17.988995</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="8">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="9">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="10">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="11">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="12">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="13">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="14">
+					<LapTime>128.176758</LapTime>
+					<T1>42.597046</T1>
+					<T2>72.986572</T2>
+					<Speed>17.427443</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+			</Entry>
+			<Entry Num="3">
+				<RaceNum>5</RaceNum>
+				<Lap Num="0">
+					<LapTime>176.780884</LapTime>
+					<T1>50.560028</T1>
+					<T2>88.171875</T2>
+					<Speed>12.635942</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="1">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="2">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="3">
+					<LapTime>130.825806</LapTime>
+					<T1>44.321777</T1>
+					<T2>76.903198</T2>
+					<Speed>17.074560</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+			</Entry>
+			<Entry Num="4">
+				<RaceNum>284</RaceNum>
+				<Lap Num="0">
+					<LapTime>141.180664</LapTime>
+					<T1>44.580078</T1>
+					<T2>81.628906</T2>
+					<Speed>15.822230</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="1">
+					<LapTime>135.341064</LapTime>
+					<T1>49.602783</T1>
+					<T2>82.348877</T2>
+					<Speed>16.504917</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="2">
+					<LapTime>135.606689</LapTime>
+					<T1>45.832275</T1>
+					<T2>80.795654</T2>
+					<Speed>16.472588</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="3">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="4">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="5">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="6">
+					<LapTime>134.941162</LapTime>
+					<T1>44.976074</T1>
+					<T2>76.345459</T2>
+					<Speed>16.553829</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+			</Entry>
+			<Entry Num="5">
+				<RaceNum>270</RaceNum>
+				<Lap Num="0">
+					<LapTime>141.627930</LapTime>
+					<T1>48.250977</T1>
+					<T2>83.446777</T2>
+					<Speed>15.772264</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="1">
+					<LapTime>153.081055</LapTime>
+					<T1>53.187988</T1>
+					<T2>87.373535</T2>
+					<Speed>14.592223</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="2">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="3">
+					<LapTime>186.365723</LapTime>
+					<T1>85.408691</T1>
+					<T2>119.271729</T2>
+					<Speed>11.986072</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="4">
+					<LapTime>154.190674</LapTime>
+					<T1>51.411377</T1>
+					<T2>89.971680</T2>
+					<Speed>14.487212</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="5">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="6">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="7">
+					<LapTime>142.100098</LapTime>
+					<T1>52.685059</T1>
+					<T2>86.476563</T2>
+					<Speed>15.719855</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+			</Entry>
+			<Entry Num="6">
+				<RaceNum>113</RaceNum>
+				<Lap Num="0">
+					<LapTime>181.413345</LapTime>
+					<T1>65.545288</T1>
+					<T2>109.464874</T2>
+					<Speed>12.313278</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="1">
+					<LapTime>173.140594</LapTime>
+					<T1>75.572479</T1>
+					<T2>114.406342</T2>
+					<Speed>12.901613</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="2">
+					<LapTime>150.503876</LapTime>
+					<T1>49.342438</T1>
+					<T2>90.478180</T2>
+					<Speed>14.842096</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="3">
+					<LapTime>159.028259</LapTime>
+					<T1>59.360474</T1>
+					<T2>94.332397</T2>
+					<Speed>14.046515</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="4">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="5">
+					<LapTime>149.807251</LapTime>
+					<T1>49.383911</T1>
+					<T2>85.435669</T2>
+					<Speed>14.911114</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="6">
+					<LapTime>163.785889</LapTime>
+					<T1>70.145874</T1>
+					<T2>104.195313</T2>
+					<Speed>13.638494</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="7">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="8">
+					<LapTime>154.609741</LapTime>
+					<T1>59.279785</T1>
+					<T2>94.401733</T2>
+					<Speed>14.447945</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="9">
+					<LapTime>143.739990</LapTime>
+					<T1>51.814697</T1>
+					<T2>86.217651</T2>
+					<Speed>15.540511</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="10">
+					<LapTime>142.886719</LapTime>
+					<T1>48.349365</T1>
+					<T2>82.965210</T2>
+					<Speed>15.633314</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="11">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="12">
+					<LapTime>143.612793</LapTime>
+					<T1>47.680664</T1>
+					<T2>86.067627</T2>
+					<Speed>15.554276</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="13">
+					<LapTime>-</LapTime>
+				</Lap>
+			</Entry>
+			<Entry Num="7">
+				<RaceNum>112</RaceNum>
+				<Lap Num="0">
+					<LapTime>175.780457</LapTime>
+					<T1>67.847580</T1>
+					<T2>110.273499</T2>
+					<Speed>12.707857</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="1">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="2">
+					<LapTime>159.776825</LapTime>
+					<T1>51.219208</T1>
+					<T2>96.405365</T2>
+					<Speed>13.980707</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="3">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="4">
+					<LapTime>157.268921</LapTime>
+					<T1>54.930786</T1>
+					<T2>89.549927</T2>
+					<Speed>14.203651</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="5">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="6">
+					<LapTime>164.349609</LapTime>
+					<T1>64.596802</T1>
+					<T2>99.312622</T2>
+					<Speed>13.591715</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="7">
+					<LapTime>164.449585</LapTime>
+					<T1>58.979736</T1>
+					<T2>100.172119</T2>
+					<Speed>13.583451</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="8">
+					<LapTime>159.546021</LapTime>
+					<T1>53.159790</T1>
+					<T2>95.233276</T2>
+					<Speed>14.000932</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="9">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="10">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="11">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="12">
+					<LapTime>148.507446</LapTime>
+					<T1>56.184937</T1>
+					<T2>90.795776</T2>
+					<Speed>15.041623</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="13">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="14">
+					<LapTime>-</LapTime>
+				</Lap>
+			</Entry>
+			<Entry Num="8">
+				<RaceNum>666</RaceNum>
+				<Lap Num="0">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="1">
+					<LapTime>156.306030</LapTime>
+					<T1>57.208740</T1>
+					<T2>94.288940</T2>
+					<Speed>14.291150</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="2">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="3">
+					<LapTime>149.373413</LapTime>
+					<T1>50.475952</T1>
+					<T2>88.198730</T2>
+					<Speed>14.954421</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+			</Entry>
+			<Entry Num="9">
+				<RaceNum>193</RaceNum>
+				<Lap Num="0">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="1">
+					<LapTime>156.270020</LapTime>
+					<T1>56.936279</T1>
+					<T2>97.080322</T2>
+					<Speed>14.294443</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="2">
+					<LapTime>173.834717</LapTime>
+					<T1>55.179932</T1>
+					<T2>107.494385</T2>
+					<Speed>12.850097</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="3">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="4">
+					<LapTime>-</LapTime>
+				</Lap>
+			</Entry>
+			<Entry Num="10">
+				<RaceNum>903</RaceNum>
+				<Lap Num="0">
+					<LapTime>169.781982</LapTime>
+					<T1>63.389404</T1>
+					<T2>101.748779</T2>
+					<Speed>13.156832</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="1">
+					<LapTime>-</LapTime>
+				</Lap>
+			</Entry>
+			<Entry Num="11">
+				<RaceNum>42</RaceNum>
+				<Lap Num="0">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="1">
+					<LapTime>198.290833</LapTime>
+					<T1>64.948517</T1>
+					<T2>109.988831</T2>
+					<Speed>11.265236</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="2">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="3">
+					<LapTime>-</LapTime>
+				</Lap>
+				<Lap Num="4">
+					<LapTime>-</LapTime>
+				</Lap>
+			</Entry>
+		</Analysis>
+	</OpenPractice>
+</Results>
+</PiBoSoXML>

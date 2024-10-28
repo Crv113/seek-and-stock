@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PiBoSoXML version="1.0">
+<Source>MX Bikes</Source>
+<Results>
+	<Track>
+		<Name>DA | Wolf Creek Mx</Name>
+		<Length>2463.376709</Length>
+	</Track>
+	<Event>
+		<Type>Race</Type>
+		<Name></Name>
+		<Date>1699655459</Date>
+	</Event>
+	<Entries>
+		<Entry>
+			<RaceNum>666</RaceNum>
+			<Name>Corvy666 | Red Head factory</Name>
+			<Bike>Kawasaki KX250 2023</Bike>
+			<Category>MX2 OEM</Category>
+			<GUID>FF011000010A24C7FF</GUID>
+			<Extra></Extra>
+		</Entry>
+		<Entry>
+			<RaceNum>112</RaceNum>
+			<Name>Corvii112</Name>
+			<Bike>Honda CRF250R 2023</Bike>
+			<Category>MX2 OEM</Category>
+			<GUID>FF0110000108A0F356</GUID>
+			<Extra></Extra>
+		</Entry>
+		<Entry>
+			<RaceNum>113</RaceNum>
+			<Name>Crv113 | LMC x First Racing</Name>
+			<Bike>Husqvarna FC 250 2023</Bike>
+			<Category>MX2 OEM</Category>
+			<GUID>FF01100001097487CA</GUID>
+			<Extra></Extra>
+		</Entry>
+		<Entry>
+			<RaceNum>175</RaceNum>
+			<Name>Phenix75</Name>
+			<Bike>Suzuki RM-Z450 2023</Bike>
+			<Category>MX1 OEM</Category>
+			<GUID>FF011000015D7B7086</GUID>
+			<Extra></Extra>
+		</Entry>
+	</Entries>
+	<Warmup>
+		<Laps>0</Laps>
+		<Weather>
+			<Conditions>Clear</Conditions>
+			<AirTemperature>0.000000</AirTemperature>
+		</Weather>
+		<Classification>
+			<Entry Num="0">
+				<RaceNum>112</RaceNum>
+				<Pos>1</Pos>
+				<Status>-</Status>
+				<RaceTime>-</RaceTime>
+			</Entry>
+			<Entry Num="1">
+				<RaceNum>113</RaceNum>
+				<Pos>2</Pos>
+				<Status>-</Status>
+				<RaceTime>-</RaceTime>
+			</Entry>
+			<Entry Num="2">
+				<RaceNum>175</RaceNum>
+				<Pos>3</Pos>
+				<Status>-</Status>
+				<RaceTime>-</RaceTime>
+			</Entry>
+			<Entry Num="3">
+				<RaceNum>666</RaceNum>
+				<Pos>4</Pos>
+				<Status>-</Status>
+				<RaceTime>-</RaceTime>
+			</Entry>
+		</Classification>
+		<Holeshot>
+			<RaceNum>0</RaceNum>
+			<HoleshotTime>-</HoleshotTime>
+		</Holeshot>
+		<FastestLap>
+			<Entry Num="0">
+				<RaceNum>-1</RaceNum>
+				<Pos>1</Pos>
+				<LapTime>-</LapTime>
+			</Entry>
+			<Entry Num="1">
+				<RaceNum>-1</RaceNum>
+				<Pos>2</Pos>
+				<LapTime>-</LapTime>
+			</Entry>
+			<Entry Num="2">
+				<RaceNum>-1</RaceNum>
+				<Pos>3</Pos>
+				<LapTime>-</LapTime>
+			</Entry>
+			<Entry Num="3">
+				<RaceNum>-1</RaceNum>
+				<Pos>4</Pos>
+				<LapTime>-</LapTime>
+			</Entry>
+		</FastestLap>
+		<Analysis>
+			<Entry Num="0">
+				<RaceNum>112</RaceNum>
+			</Entry>
+			<Entry Num="1">
+				<RaceNum>113</RaceNum>
+			</Entry>
+			<Entry Num="2">
+				<RaceNum>175</RaceNum>
+			</Entry>
+			<Entry Num="3">
+				<RaceNum>666</RaceNum>
+				<Lap Num="0">
+					<LapTime>-</LapTime>
+				</Lap>
+			</Entry>
+		</Analysis>
+		<Penalties>
+		</Penalties>
+	</Warmup>
+	<Race2>
+		<Laps>5</Laps>
+		<Weather>
+			<Conditions>Clear</Conditions>
+			<AirTemperature>0.000000</AirTemperature>
+		</Weather>
+		<Classification>
+			<Entry Num="0">
+				<RaceNum>113</RaceNum>
+				<Pos>1</Pos>
+				<Status>-</Status>
+				<RaceTime>789.610229</RaceTime>
+				<Laps>5</Laps>
+				<Lapped>-</Lapped>
+				<Gap>0.000000</Gap>
+				<Penalty>7.000000</Penalty>
+			</Entry>
+			<Entry Num="1">
+				<RaceNum>666</RaceNum>
+				<Pos>2</Pos>
+				<Status>-</Status>
+				<RaceTime>809.815796</RaceTime>
+				<Laps>5</Laps>
+				<Lapped>-</Lapped>
+				<Gap>20.205566</Gap>
+				<Penalty>4.000000</Penalty>
+			</Entry>
+			<Entry Num="2">
+				<RaceNum>112</RaceNum>
+				<Pos>3</Pos>
+				<Status>-</Status>
+				<RaceTime>815.288757</RaceTime>
+				<Laps>5</Laps>
+				<Lapped>-</Lapped>
+				<Gap>25.678528</Gap>
+				<Penalty>1.000000</Penalty>
+			</Entry>
+			<Entry Num="3">
+				<RaceNum>175</RaceNum>
+				<Pos>4</Pos>
+				<Status>-</Status>
+				<RaceTime>879.523682</RaceTime>
+				<Laps>5</Laps>
+				<Lapped>-</Lapped>
+				<Gap>89.913452</Gap>
+				<Penalty>19.000000</Penalty>
+			</Entry>
+		</Classification>
+		<Holeshot>
+			<RaceNum>112</RaceNum>
+			<HoleshotTime>10.091982</HoleshotTime>
+		</Holeshot>
+		<FastestLap>
+			<Entry Num="0">
+				<RaceNum>113</RaceNum>
+				<Pos>1</Pos>
+				<LapTime>119.044495</LapTime>
+				<Lap>4</Lap>
+				<Gap>-</Gap>
+				<Speed>20.692907</Speed>
+			</Entry>
+			<Entry Num="1">
+				<RaceNum>112</RaceNum>
+				<Pos>2</Pos>
+				<LapTime>120.539734</LapTime>
+				<Lap>5</Lap>
+				<Gap>1.495239</Gap>
+				<Speed>20.436222</Speed>
+			</Entry>
+			<Entry Num="2">
+				<RaceNum>666</RaceNum>
+				<Pos>3</Pos>
+				<LapTime>130.693787</LapTime>
+				<Lap>5</Lap>
+				<Gap>11.649292</Gap>
+				<Speed>18.848461</Speed>
+			</Entry>
+			<Entry Num="3">
+				<RaceNum>175</RaceNum>
+				<Pos>4</Pos>
+				<LapTime>-</LapTime>
+			</Entry>
+		</FastestLap>
+		<Analysis>
+			<Entry Num="0">
+				<RaceNum>113</RaceNum>
+				<Lap Num="0">
+					<LapTime>262.040222</LapTime>
+					<T1>169.019989</T1>
+					<T2>222.569595</T2>
+					<Speed>9.400758</Speed>
+					<Invalid>1</Invalid>
+				</Lap>
+				<Lap Num="1">
+					<LapTime>144.984711</LapTime>
+					<T1>36.742676</T1>
+					<T2>85.996826</T2>
+					<Speed>16.990597</Speed>
+					<Invalid>1</Invalid>
+				</Lap>
+				<Lap Num="2">
+					<LapTime>129.688629</LapTime>
+					<T1>39.138031</T1>
+					<T2>87.073273</T2>
+					<Speed>18.994547</Speed>
+					<Invalid>1</Invalid>
+				</Lap>
+				<Lap Num="3">
+					<LapTime>119.044495</LapTime>
+					<T1>33.313599</T1>
+					<T2>78.751831</T2>
+					<Speed>20.692907</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="4">
+					<LapTime>126.852173</LapTime>
+					<T1>38.883850</T1>
+					<T2>87.945862</T2>
+					<Speed>19.419271</Speed>
+					<Invalid>1</Invalid>
+				</Lap>
+			</Entry>
+			<Entry Num="1">
+				<RaceNum>666</RaceNum>
+				<Lap Num="0">
+					<LapTime>263.471313</LapTime>
+					<T1>174.129669</T1>
+					<T2>223.057877</T2>
+					<Speed>9.349696</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="1">
+					<LapTime>138.204803</LapTime>
+					<T1>35.795685</T1>
+					<T2>85.324982</T2>
+					<Speed>17.824104</Speed>
+					<Invalid>1</Invalid>
+				</Lap>
+				<Lap Num="2">
+					<LapTime>137.210419</LapTime>
+					<T1>34.322754</T1>
+					<T2>95.768890</T2>
+					<Speed>17.953278</Speed>
+					<Invalid>1</Invalid>
+				</Lap>
+				<Lap Num="3">
+					<LapTime>136.235474</LapTime>
+					<T1>35.152161</T1>
+					<T2>88.222534</T2>
+					<Speed>18.081757</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="4">
+					<LapTime>130.693787</LapTime>
+					<T1>35.023621</T1>
+					<T2>88.407104</T2>
+					<Speed>18.848461</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+			</Entry>
+			<Entry Num="2">
+				<RaceNum>112</RaceNum>
+				<Lap Num="0">
+					<LapTime>274.077576</LapTime>
+					<T1>176.993439</T1>
+					<T2>230.283508</T2>
+					<Speed>8.987882</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="1">
+					<LapTime>140.702209</LapTime>
+					<T1>43.684692</T1>
+					<T2>99.264252</T2>
+					<Speed>17.507732</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="2">
+					<LapTime>156.555725</LapTime>
+					<T1>48.307800</T1>
+					<T2>115.529053</T2>
+					<Speed>15.734823</Speed>
+					<Invalid>1</Invalid>
+				</Lap>
+				<Lap Num="3">
+					<LapTime>122.413513</LapTime>
+					<T1>34.621521</T1>
+					<T2>81.194031</T2>
+					<Speed>20.123405</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+				<Lap Num="4">
+					<LapTime>120.539734</LapTime>
+					<T1>34.002075</T1>
+					<T2>80.474060</T2>
+					<Speed>20.436222</Speed>
+					<Invalid>0</Invalid>
+				</Lap>
+			</Entry>
+			<Entry Num="3">
+				<RaceNum>175</RaceNum>
+				<Lap Num="0">
+					<LapTime>282.972687</LapTime>
+					<T1>178.797714</T1>
+					<T2>235.039536</T2>
+					<Speed>8.705352</Speed>
+					<Invalid>1</Invalid>
+				</Lap>
+				<Lap Num="1">
+					<LapTime>143.604828</LapTime>
+					<T1>36.003693</T1>
+					<T2>102.388580</T2>
+					<Speed>17.153856</Speed>
+					<Invalid>1</Invalid>
+				</Lap>
+				<Lap Num="2">
+					<LapTime>132.022217</LapTime>
+					<T1>38.368103</T1>
+					<T2>92.845886</T2>
+					<Speed>18.658804</Speed>
+					<Invalid>1</Invalid>
+				</Lap>
+				<Lap Num="3">
+					<LapTime>143.420410</LapTime>
+					<T1>47.805725</T1>
+					<T2>94.676147</T2>
+					<Speed>17.175915</Speed>
+					<Invalid>1</Invalid>
+				</Lap>
+				<Lap Num="4">
+					<LapTime>158.503540</LapTime>
+					<T1>43.999878</T1>
+					<T2>117.631348</T2>
+					<Speed>15.541462</Speed>
+					<Invalid>1</Invalid>
+				</Lap>
+			</Entry>
+		</Analysis>
+		<Penalties>
+			<Entry Num="0">
+				<RaceNum>113</RaceNum>
+				<Penalty Num="0">
+					<Offence>Cutting</Offence>
+					<Lap>0</Lap>
+					<Type>Time Penalty</Type>
+					<Penalty>1</Penalty>
+				</Penalty>
+				<Penalty Num="1">
+					<Offence>Cutting</Offence>
+					<Lap>0</Lap>
+					<Type>Time Penalty</Type>
+					<Penalty>2</Penalty>
+				</Penalty>
+				<Penalty Num="2">
+					<Offence>Cutting</Offence>
+					<Lap>1</Lap>
+					<Type>Time Penalty</Type>
+					<Penalty>1</Penalty>
+				</Penalty>
+				<Penalty Num="3">
+					<Offence>Cutting</Offence>
+					<Lap>2</Lap>
+					<Type>Time Penalty</Type>
+					<Penalty>1</Penalty>
+				</Penalty>
+				<Penalty Num="4">
+					<Offence>Cutting</Offence>
+					<Lap>4</Lap>
+					<Type>Time Penalty</Type>
+					<Penalty>2</Penalty>
+				</Penalty>
+			</Entry>
+			<Entry Num="1">
+				<RaceNum>666</RaceNum>
+				<Penalty Num="0">
+					<Offence>Cutting</Offence>
+					<Lap>1</Lap>
+					<Type>Time Penalty</Type>
+					<Penalty>2</Penalty>
+				</Penalty>
+				<Penalty Num="1">
+					<Offence>Cutting</Offence>
+					<Lap>2</Lap>
+					<Type>Time Penalty</Type>
+					<Penalty>2</Penalty>
+				</Penalty>
+			</Entry>
+			<Entry Num="2">
+				<RaceNum>112</RaceNum>
+				<Penalty Num="0">
+					<Offence>Cutting</Offence>
+					<Lap>2</Lap>
+					<Type>Time Penalty</Type>
+					<Penalty>1</Penalty>
+				</Penalty>
+			</Entry>
+			<Entry Num="3">
+				<RaceNum>175</RaceNum>
+				<Penalty Num="0">
+					<Offence>Cutting</Offence>
+					<Lap>0</Lap>
+					<Type>Time Penalty</Type>
+					<Penalty>4</Penalty>
+				</Penalty>
+				<Penalty Num="1">
+					<Offence>Cutting</Offence>
+					<Lap>0</Lap>
+					<Type>Time Penalty</Type>
+					<Penalty>1</Penalty>
+				</Penalty>
+				<Penalty Num="2">
+					<Offence>Cutting</Offence>
+					<Lap>1</Lap>
+					<Type>Time Penalty</Type>
+					<Penalty>5</Penalty>
+				</Penalty>
+				<Penalty Num="3">
+					<Offence>Cutting</Offence>
+					<Lap>2</Lap>
+					<Type>Time Penalty</Type>
+					<Penalty>4</Penalty>
+				</Penalty>
+				<Penalty Num="4">
+					<Offence>Cutting</Offence>
+					<Lap>3</Lap>
+					<Type>Time Penalty</Type>
+					<Penalty>1</Penalty>
+				</Penalty>
+				<Penalty Num="5">
+					<Offence>Cutting</Offence>
+					<Lap>4</Lap>
+					<Type>Time Penalty</Type>
+					<Penalty>4</Penalty>
+				</Penalty>
+			</Entry>
+		</Penalties>
+	</Race2>
+</Results>
+</PiBoSoXML>
