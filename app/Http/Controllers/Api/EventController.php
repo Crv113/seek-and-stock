@@ -24,8 +24,8 @@ class EventController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'starting_date_timestamp' => 'required|integer',
-            'ending_date_timestamp' => 'required|integer',
+            'starting_date' => 'required|string',
+            'ending_date' => 'required|string',
         ]);
 
         $event = Event::create($request->all());
@@ -48,8 +48,8 @@ class EventController extends Controller
     {
         $request->validate([
             'name' => 'string',
-            'starting_date_timestamp' => 'integer',
-            'ending_date_timestamp' => 'integer',
+            'starting_date' => 'string',
+            'ending_date' => 'string',
         ]);
 
         $event->update($request->all());

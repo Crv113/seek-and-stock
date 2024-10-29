@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\LapTime;
 use App\Models\Race;
 use App\Models\Track;
+use DateTime;
 use Illuminate\Support\Facades\Log;
 
 class XmlDataService
@@ -25,23 +26,26 @@ class XmlDataService
         }
 
         // Recherche d'event correspondant à ces résultats de course
-        $event = Event::where('starting_date_timestamp', '<', (int)$content->Event->Date)
-            ->where('ending_date_timestamp', '>', (int)$content->Event->Date)
+        $raceDate = new DateTime();
+        $raceDate->setTimestamp((int)$content->Event->Date);
+
+        $event = Event::where('starting_date', '<', $raceDate->format('Y-m-d H:i:s'))
+            ->where('ending_date', '>', $raceDate->format('Y-m-d H:i:s'))
             ->first();
 
         if(empty($event)) {
-            Log::channel('seek_and_stock_process')->warning('Event not found for this race (race date: ' . date('Y-m-d H:i:s', (int)$content->Event->Date) . ' )');
+            Log::channel('seek_and_stock_process')->warning('Event not found for this race (race date: ' . $raceDate->format('Y-m-d H:i:s') . ' )');
             return;
         }
 
-        $track = Track::firstOrCreate(['label' => $content->Track->Name, 'length' => $content->Track->Length]);
+        $track = Track::firstOrCreate(['name' => $content->Track->Name, 'length' => $content->Track->Length]);
 
-        $race = Race::Create(['date_timestamp' => $content->Event->Date, 'track_id' => $track->id, 'event_id' => $event->id]);
+        $race = Race::Create(['date' => $raceDate, 'track_id' => $track->id, 'event_id' => $event->id]);
 
         $entries = [];
         foreach ($content->Entries->Entry as $player) {
-            $category = Category::firstOrCreate(['label' => $player->Category]);
-            $bike = Bike::firstOrCreate(['label' => $player->Bike, 'category_id' => $category->id]);
+            $category = Category::firstOrCreate(['name' => $player->Category]);
+            $bike = Bike::firstOrCreate(['name' => $player->Bike, 'category_id' => $category->id]);
 
             $entries[(string)$player->RaceNum] = [
                 'player_guid' => (string)$player->GUID,
@@ -49,8 +53,6 @@ class XmlDataService
                 'bike_id' => $bike->id,
             ];
         }
-
-
 
         foreach ($content->Race2->FastestLap->Entry as $fastestLap) {
             $entries[(string)$fastestLap->RaceNum]["fastestLapTime"] = (float)$fastestLap->LapTime;

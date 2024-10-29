@@ -16,7 +16,7 @@ class RaceResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'date_timestamp' => date('Y-m-d H:i:s', $this->date_timestamp),
+            'date' => $this->date,
             'track' => new TrackResource($this->track),
             'lap_times' => LapTimeResource::collection($this->lapTimes),
         ];

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Race extends Model
 {
     use HasFactory;
-    protected $fillable = ['date_timestamp', 'track_id', 'event_id'];
+    protected $fillable = ['date', 'track_id', 'event_id'];
 
     public function event(): BelongsTo
     {

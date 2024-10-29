@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('races', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('date_timestamp');
+            $table->dateTime('date');
             $table->foreignId('track_id')->constrained();
             $table->foreignId('event_id')->constrained();
             $table->timestamps();

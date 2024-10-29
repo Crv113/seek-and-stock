@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('bikes', function (Blueprint $table) {
             $table->id();
-            $table->string('label');
+            $table->string('name');
             $table->foreignId('category_id')->constrained();
             $table->timestamps();
         });

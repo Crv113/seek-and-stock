@@ -16,7 +16,7 @@ class TrackResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'label' => $this->label,
+            'name' => $this->name,
             'length' => round($this->length),
         ];
     }

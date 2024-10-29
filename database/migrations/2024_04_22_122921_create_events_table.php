@@ -10,8 +10,8 @@ return new class extends Migration {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigInteger('starting_date_timestamp');
-            $table->bigInteger('ending_date_timestamp');
+            $table->dateTime('starting_date');
+            $table->dateTime('ending_date');
             $table->timestamps();
         });
     }

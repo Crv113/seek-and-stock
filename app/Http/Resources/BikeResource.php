@@ -16,7 +16,7 @@ class BikeResource extends JsonResource
     {
         return [
           'id' => $this->id,
-          'label' => $this->label,
+          'name' => $this->name,
           'category' => new CategoryResource($this->category),
         ];
     }

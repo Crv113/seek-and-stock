@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('tracks', function (Blueprint $table) {
             $table->id();
-            $table->string('label');
+            $table->string('name');
             $table->decimal('length', 20, 10);
             $table->timestamps();
         });

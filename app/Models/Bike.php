@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Bike extends Model
 {
     use HasFactory;
-    protected $fillable = ['label', 'category_id'];
+    protected $fillable = ['name', 'category_id'];
 
     public function category(): BelongsTo
     {
