@@ -35,7 +35,11 @@ class SeekAndStockJob implements ShouldQueue
 
         $oldResultsDir = config('custom.results_path') . '/oldResults';
         if (!file_exists($oldResultsDir)) {
-            mkdir($oldResultsDir, 0755, true);
+            try {
+                mkdir($oldResultsDir, 0755, true);
+            } catch (\Exception $e) {
+                Log::channel('seek_and_stock_process')->error($e);
+            }
             Log::channel('seek_and_stock_process')->info("Directory '$oldResultsDir' created.");
         }
 
