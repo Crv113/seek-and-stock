@@ -1,7 +1,13 @@
 start:
+	docker-compose up --build
+
+dstart:
 	docker-compose up --build -d
 
 stop:
+	docker-compose down
+
+vstop:
 	docker-compose down
 
 migrate:
