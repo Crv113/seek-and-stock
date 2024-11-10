@@ -18,9 +18,22 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
+            echo "Démarrage de la copie des fichiers avec rsync..."
             rsync -avz --exclude '.git' . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.APP_PATH }}
+            echo "Copie terminée. Mise à jour de la configuration Nginx..."
             cp ${{ secrets.APP_PATH }}/nginx.prod.conf /etc/nginx/nginx.conf
+            echo "Redémarrage de Nginx..."
             sudo systemctl restart nginx
+            echo "Redémarrage de Docker..."
             cd ${{ secrets.APP_PATH }}
             docker-compose down
             docker-compose up -d --build
+            echo "Déploiement terminé."
+
+#          script: |
+#            rsync -avz --exclude '.git' . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.APP_PATH }}
+#            cp ${{ secrets.APP_PATH }}/nginx.prod.conf /etc/nginx/nginx.conf
+#            sudo systemctl restart nginx
+#            cd ${{ secrets.APP_PATH }}
+#            docker-compose down
+#            docker-compose up -d --build
