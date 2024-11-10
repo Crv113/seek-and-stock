@@ -8,29 +8,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Install SSH Key
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.SSH_KEY }}
+      - name: Install SSH Key
+        uses: webfactory/ssh-agent@v0.6
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
 
-    - name: Copy files to server
-      run: |
-        rsync -avz --exclude '.git' . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.APP_PATH }}
+      - name: Copy files to server
+        run: |
+          rsync -avz --exclude '.git' . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.APP_PATH }}
 
-    - name: Set Nginx configuration
-      run: |
-        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
-          cp ${{ secrets.APP_PATH }}/nginx.prod.conf /etc/nginx/nginx.conf
-          sudo systemctl restart nginx
-        EOF
+      - name: Set Nginx configuration
+        run: |
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
+            cp ${{ secrets.APP_PATH }}/nginx.prod.conf /etc/nginx/nginx.conf
+            sudo systemctl restart nginx
+          EOF
 
-    - name: Restart Docker containers
-      run: |
-        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
-          cd ${{ secrets.APP_PATH }}
-          docker-compose down  # Stoppe les conteneurs en cours
-          docker-compose up -d --build  # Redémarre les conteneurs en mode détaché avec build
-        EOF
+      - name: Restart Docker containers
+        run: |
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
+            cd ${{ secrets.APP_PATH }}
+            docker-compose down  # Stoppe les conteneurs en cours
+            docker-compose up -d --build  # Redémarre les conteneurs en mode détaché avec build
+          EOF
