@@ -11,26 +11,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install SSH Key
-        uses: webfactory/ssh-agent@v0.6
+      - name: Deploy and Configure Server
+        uses: appleboy/ssh-action@master
         with:
-          ssh-private-key: ${{ secrets.SSH_KEY }}
-
-      - name: Copy files to server
-        run: |
-          rsync -avz --exclude '.git' . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.APP_PATH }}
-
-      - name: Set Nginx configuration
-        run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            rsync -avz --exclude '.git' . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.APP_PATH }}
             cp ${{ secrets.APP_PATH }}/nginx.prod.conf /etc/nginx/nginx.conf
             sudo systemctl restart nginx
-          EOF
-
-      - name: Restart Docker containers
-        run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
             cd ${{ secrets.APP_PATH }}
-            docker-compose down  # Stoppe les conteneurs en cours
-            docker-compose up -d --build  # Redémarre les conteneurs en mode détaché avec build
-          EOF
+            docker-compose down
+            docker-compose up -d --build
