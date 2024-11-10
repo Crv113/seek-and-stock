@@ -18,7 +18,7 @@ class VerifyApiKey
 
         $apiKey = $request->header('Authorization');
 
-        if ($apiKey !== 'Bearer ' . config('api.api_key')) {
+        if ($apiKey !== 'Bearer ' . config('custom.api_key')) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 

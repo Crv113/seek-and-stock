@@ -14,8 +14,8 @@ class EventFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'starting_date_timestamp' => $this->faker->randomNumber(),
-            'ending_date_timestamp' => $this->faker->randomNumber(),
+            'starting_date' => $this->faker->randomNumber(),
+            'ending_date' => $this->faker->randomNumber(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

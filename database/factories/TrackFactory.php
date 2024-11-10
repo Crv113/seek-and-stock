@@ -13,7 +13,7 @@ class TrackFactory extends Factory
     public function definition()
     {
         return [
-            'label' => $this->faker->word(),
+            'name' => $this->faker->word(),
             'length' => $this->faker->randomFloat(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

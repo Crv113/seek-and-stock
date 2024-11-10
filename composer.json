@@ -8,6 +8,7 @@
         "php": "^8.2",
         "ext-simplexml": "*",
         "laravel/framework": "^11.0",
+        "laravel/horizon": "^5.29",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9"
     },

@@ -13,7 +13,7 @@ class RaceFactory extends Factory
     public function definition(): array
     {
         return [
-            'date_timestamp' => $this->faker->randomDigitNotNull(),
+            'date' => $this->faker->randomDigitNotNull(),
             'track_id' => $this->faker->randomDigitNotNull(),
             'event_id' => $this->faker->randomDigitNotNull(),
             'created_at' => Carbon::now(),
