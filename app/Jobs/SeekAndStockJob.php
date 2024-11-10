@@ -29,6 +29,7 @@ class SeekAndStockJob implements ShouldQueue
         Log::channel('seek_and_stock_process')->info('Start seek_and_stock');
 
         $files = glob(config('custom.results_path') . '/mxbt-*.xml');
+        Log::channel('seek_and_stock_process')->info('Recherche dans:' . config('custom.results_path'));
 
         Log::channel('seek_and_stock_process')->info(count($files) . ' files found.');
 
