@@ -1,7 +1,7 @@
 name: Deploy to Server
 
 on:
-  workflow_dispatch:  # Permet de déclencher manuellement le workflow
+  workflow_dispatch:  # Déclenchement manuel
 
 jobs:
   deploy:
@@ -25,4 +25,12 @@ jobs:
         ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
           cp ${{ secrets.APP_PATH }}/nginx.prod.conf /etc/nginx/nginx.conf
           sudo systemctl restart nginx
+        EOF
+
+    - name: Restart Docker containers
+      run: |
+        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
+          cd ${{ secrets.APP_PATH }}
+          docker-compose down  # Stoppe les conteneurs en cours
+          docker-compose up -d --build  # Redémarre les conteneurs en mode détaché avec build
         EOF
