@@ -19,10 +19,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             echo "Démarrage de la copie des fichiers avec rsync..."
-            rsync -avz -e "ssh -o StrictHostKeyChecking=no" --exclude '.git' . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.APP_PATH }}
+            sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no" --exclude '.git' . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.APP_PATH }}
             echo "Copie terminée. Mise à jour de la configuration Nginx..."
-            cp ${{ secrets.APP_PATH }}/nginx.prod.conf /etc/nginx/nginx.conf
-            sudo systemctl restart nginx
+            sudo cp ${{ secrets.APP_PATH }}/nginx.prod.conf /etc/nginx/nginx.conf
             cd ${{ secrets.APP_PATH }}
             docker-compose down
             docker-compose up -d --build
