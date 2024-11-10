@@ -1,0 +1,28 @@
+name: Deploy to Server
+
+on:
+  workflow_dispatch:  # Permet de déclencher manuellement le workflow
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install SSH Key
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_KEY }}
+
+    - name: Copy files to server
+      run: |
+        rsync -avz --exclude '.git' . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.APP_PATH }}
+
+    - name: Set Nginx configuration
+      run: |
+        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
+          cp ${{ secrets.APP_PATH }}/nginx.prod.conf /etc/nginx/nginx.conf
+          sudo systemctl restart nginx
+        EOF
