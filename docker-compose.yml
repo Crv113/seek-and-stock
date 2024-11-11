@@ -17,7 +17,7 @@ services:
           dockerfile: docker/Dockerfile
       volumes:
           - .:/var/www/html
-          - /home/ubuntu/Documents/server1/exports:/var/www/html/exports
+          - ${RESULTS_PATH}:${RESULTS_PATH_DOCKER}
       depends_on:
           - db
           - redis

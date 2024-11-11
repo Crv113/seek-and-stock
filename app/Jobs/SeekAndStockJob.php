@@ -28,18 +28,13 @@ class SeekAndStockJob implements ShouldQueue
     {
         Log::channel('seek_and_stock_process')->info('Start seek_and_stock');
 
-        $files = glob(config('custom.results_path') . '/mxbt-*.xml');
-        Log::channel('seek_and_stock_process')->info('Recherche dans:' . config('custom.results_path'));
+        $files = glob(config('custom.results_path_docker') . '/mxbt-*.xml');
 
         Log::channel('seek_and_stock_process')->info(count($files) . ' files found.');
 
-        $oldResultsDir = config('custom.results_path') . '/oldResults';
+        $oldResultsDir = config('custom.results_path_docker') . '/oldResults';
         if (!file_exists($oldResultsDir)) {
-            try {
-                mkdir($oldResultsDir, 0755, true);
-            } catch (\Exception $e) {
-                Log::channel('seek_and_stock_process')->error($e);
-            }
+            mkdir($oldResultsDir, 0755, true);
             Log::channel('seek_and_stock_process')->info("Directory '$oldResultsDir' created.");
         }
 
