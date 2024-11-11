@@ -8,7 +8,7 @@ stop:
 	docker-compose down
 
 vstop:
-	docker-compose down
+	docker-compose down -v
 
 migrate:
 	docker-compose exec app php artisan migrate
