@@ -17,8 +17,8 @@ class EventResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'starting_date' => $this->starting_date_timestamp,
-            'ending_date' => $this->ending_date_timestamp,
+            'starting_date' => $this->starting_date,
+            'ending_date' => $this->ending_date,
             'races' => RaceResource::collection($this->races),
         ];
     }
