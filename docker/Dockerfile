@@ -17,6 +17,11 @@ COPY . .
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader --working-dir=/var/www/html
 
+
+# Définir les permissions pour www-data sur les dossiers nécessaires
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
 # Exposer le port 9000 pour PHP-FPM
 EXPOSE 9000
 

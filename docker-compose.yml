@@ -78,6 +78,7 @@ services:
         - app-network
     depends_on:
       - app
+    command: sh -c "chown -R nginx:nginx /var/www/html/storage /var/www/html/bootstrap/cache && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache && nginx -g 'daemon off;'"
 
 volumes:
   db_data:
