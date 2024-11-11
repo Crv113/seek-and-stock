@@ -16,9 +16,6 @@ COPY . .
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader --working-dir=/var/www/html
 
-# Configurer Nginx
-COPY ./docker/nginx.conf /etc/nginx/nginx.conf
-
 # Exposer le port 80
 EXPOSE 80
 
