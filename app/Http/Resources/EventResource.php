@@ -20,6 +20,7 @@ class EventResource extends JsonResource
             'starting_date' => $this->starting_date,
             'ending_date' => $this->ending_date,
             'races' => RaceResource::collection($this->races),
+            'lap_times' => LapTimeResource::collection($this->lapTimes),
         ];
     }
 }

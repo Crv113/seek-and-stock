@@ -68,6 +68,7 @@ class EventController extends Controller
 
     public function getEventResults($id)
     {
+        //TODO: refacto ce code + revoir format retour
         $event = Event::with([
             'races.track',
             'races.lapTimes' => function($query) {
@@ -76,6 +77,31 @@ class EventController extends Controller
             'races.lapTimes.bike.category'
         ])->findOrFail($id);
 
+        $fastest_lap_times = [];
+        foreach ($event->races as $race) {
+            foreach ($race->lapTimes as $lap_time) {
+                $fastest_lap_times[] = $lap_time;
+            }
+        }
+
+        $results = [];
+        foreach ($fastest_lap_times as $fastest_lap_time) {
+            if(array_key_exists($fastest_lap_time->player_guid, $results)) {
+                if($fastest_lap_time->lap_time <= $results[$fastest_lap_time->player_guid]->lap_time) {
+                    $results[$fastest_lap_time->player_guid] = $fastest_lap_time;
+                }
+            } else {
+                $results[$fastest_lap_time->player_guid] = $fastest_lap_time;
+            }
+
+        }
+
+        uasort($results, function ($a, $b) {
+            return $a->lap_time <=> $b->lap_time;
+        });
+
+        $event->lapTimes = collect($results);
         return new EventResource($event);
     }
 }
+
