@@ -14,6 +14,7 @@ class TrackFactory extends Factory
     {
         return [
             'name' => $this->faker->word(),
+            'key' => $this->faker->word(),
             'length' => $this->faker->randomFloat(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

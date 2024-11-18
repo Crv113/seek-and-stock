@@ -37,7 +37,6 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-
         return $event;
     }
 
@@ -70,7 +69,7 @@ class EventController extends Controller
     {
         //TODO: refacto ce code + revoir format retour
         $event = Event::with([
-            'races.track',
+            'track',
             'races.lapTimes' => function($query) {
                 $query->where('fastest', true);
             },

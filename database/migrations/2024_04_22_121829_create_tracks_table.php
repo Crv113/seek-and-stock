@@ -9,8 +9,9 @@ return new class extends Migration {
     {
         Schema::create('tracks', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->decimal('length', 20, 10);
+            $table->string('name')->nullable();
+            $table->string('key');
+            $table->decimal('length', 20, 10)->nullable();
             $table->timestamps();
         });
     }
