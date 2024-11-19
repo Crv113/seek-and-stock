@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Track;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +18,7 @@ class TrackController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'key' => 'required|string',
+            'name' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -38,10 +39,16 @@ class TrackController extends Controller
 
     public function update(Request $request, Track $track)
     {
-        $request->validate([
-            'key' => 'string',
+        $validator = Validator::make($request->all(), [
             'name' => 'string',
         ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
 
         $track->update($request->all());
         return response()->json($track);

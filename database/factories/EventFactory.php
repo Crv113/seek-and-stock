@@ -14,6 +14,7 @@ class EventFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'track_id' => $this->faker->randomNumber(),
             'starting_date' => $this->faker->randomNumber(),
             'ending_date' => $this->faker->randomNumber(),
             'created_at' => Carbon::now(),

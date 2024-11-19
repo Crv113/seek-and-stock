@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\EventResource;
+use App\Http\Resources\LapTimeResource;
 use App\Models\Event;
+use App\Models\LapTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
 {
@@ -22,11 +26,19 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string',
+            'track_id' => 'required|int',
             'starting_date' => 'required|string',
             'ending_date' => 'required|string',
         ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
 
         $event = Event::create($request->all());
         return response()->json($event, 201);
@@ -45,12 +57,20 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        $request->validate([
+
+        $validator = Validator::make($request->all(), [
             'name' => 'string',
+            'track_id' => 'string',
             'starting_date' => 'string',
             'ending_date' => 'string',
         ]);
 
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
         $event->update($request->all());
         return response()->json($event);
     }
@@ -65,42 +85,27 @@ class EventController extends Controller
         return response()->json(null, 204);
     }
 
-    public function getEventResults($id)
-    {
-        //TODO: refacto ce code + revoir format retour
-        $event = Event::with([
-            'track',
-            'races.lapTimes' => function($query) {
-                $query->where('fastest', true);
-            },
-            'races.lapTimes.bike.category'
-        ])->findOrFail($id);
-
-        $fastest_lap_times = [];
-        foreach ($event->races as $race) {
-            foreach ($race->lapTimes as $lap_time) {
-                $fastest_lap_times[] = $lap_time;
-            }
-        }
-
-        $results = [];
-        foreach ($fastest_lap_times as $fastest_lap_time) {
-            if(array_key_exists($fastest_lap_time->player_guid, $results)) {
-                if($fastest_lap_time->lap_time <= $results[$fastest_lap_time->player_guid]->lap_time) {
-                    $results[$fastest_lap_time->player_guid] = $fastest_lap_time;
+    public function getEventResults($id) {
+        $fastestLapTimes = LapTime::select('lap_times.*')
+            ->join('races', 'lap_times.race_id', '=', 'races.id')
+            ->joinSub(
+                DB::table('lap_times')
+                    ->select('player_guid', DB::raw('MIN(lap_time) as min_lap_time'))
+                    ->where('fastest', true)
+                    ->where('invalid', 0)
+                    ->groupBy('player_guid'),
+                'fastest_laps',
+                function ($join) {
+                    $join->on('lap_times.player_guid', '=', 'fastest_laps.player_guid')
+                        ->on('lap_times.lap_time', '=', 'fastest_laps.min_lap_time');
                 }
-            } else {
-                $results[$fastest_lap_time->player_guid] = $fastest_lap_time;
-            }
+            )
+            ->where('races.event_id', $id)
+            ->orderBy('lap_times.lap_time')
+            ->get();
 
-        }
+        return LapTimeResource::collection($fastestLapTimes);
 
-        uasort($results, function ($a, $b) {
-            return $a->lap_time <=> $b->lap_time;
-        });
-
-        $event->lapTimes = collect($results);
-        return new EventResource($event);
     }
 }
 

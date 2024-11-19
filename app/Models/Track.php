@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Track extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'key', 'length'];
+    protected $fillable = ['name', 'length'];
 
     public function races():HasMany
     {

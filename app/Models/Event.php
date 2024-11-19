@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Event extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'starting_date', 'ending_date'];
+    protected $fillable = ['name', 'starting_date', 'ending_date', 'track_id'];
 
     public function races(): HasMany
     {

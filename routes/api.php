@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\EventController;
-use App\Http\Controllers\TrackController;
+use App\Http\Controllers\Api\TrackController;
 use App\Http\Middleware\VerifyApiKey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
