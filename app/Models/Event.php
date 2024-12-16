@@ -15,4 +15,9 @@ class Event extends Model
     {
         return $this->hasMany(Race::class);
     }
+
+    public function track(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Track::class);
+    }
 }

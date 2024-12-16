@@ -18,7 +18,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        return Event::all();
+        return Event::with('track:id,name')->orderBy('ending_date', 'desc')->get();
     }
 
     /**
@@ -41,6 +41,7 @@ class EventController extends Controller
         }
 
         $event = Event::create($request->all());
+        $event->load(['track:id,name']);
         return response()->json($event, 201);
     }
 
