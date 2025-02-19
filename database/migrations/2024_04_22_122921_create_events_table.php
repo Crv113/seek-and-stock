@@ -11,6 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('track_id');
             $table->string('name');
+            $table->string('image')->nullable();
             $table->dateTime('starting_date');
             $table->dateTime('ending_date');
             $table->timestamps();

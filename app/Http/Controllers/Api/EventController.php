@@ -18,7 +18,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        return Event::with('track:id,name')->orderBy('ending_date', 'desc')->get();
+        return Event::with('track:id,name,image')->orderBy('ending_date', 'desc')->get();
     }
 
     /**
@@ -28,6 +28,7 @@ class EventController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'track_id' => 'required|int',
             'starting_date' => 'required|string',
             'ending_date' => 'required|string',
@@ -40,8 +41,19 @@ class EventController extends Controller
             ], 422);
         }
 
-        $event = Event::create($request->all());
-        $event->load(['track:id,name']);
+        if($request->file('image')) {
+            $imagePath = $request->file('image')->store('images/events', 'public');
+        }
+
+
+        $event = Event::create([
+            'name' => $request->input('name'),
+            'image' => $imagePath ?? null,
+            'track_id' => $request->input('track_id'),
+            'starting_date' => $request->input('starting_date'),
+            'ending_date' => $request->input('ending_date')
+        ]);
+        $event->load(['track:id,name,image']);
         return response()->json($event, 201);
     }
 

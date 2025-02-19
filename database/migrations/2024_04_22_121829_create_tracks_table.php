@@ -10,6 +10,7 @@ return new class extends Migration {
         Schema::create('tracks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('image');
             $table->decimal('length', 20, 10)->nullable();
             $table->timestamps();
         });

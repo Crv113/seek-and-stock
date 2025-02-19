@@ -16,4 +16,9 @@ migrate:
 check-results:
 	docker-compose exec app php artisan check-new-results
 
+ccache:
+	docker-compose exec app php artisan cache:clear
+
+cconfig:
+	docker-compose exec app php artisan config:clear
 

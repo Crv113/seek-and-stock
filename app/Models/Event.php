@@ -9,7 +9,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Event extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'starting_date', 'ending_date', 'track_id'];
+    protected $fillable = ['name', 'image', 'starting_date', 'ending_date', 'track_id'];
+
+    public function getImageAttribute(): ?string
+    {
+        return $this->attributes['image'] ? asset('storage/' . $this->attributes['image']) : null;
+    }
 
     public function races(): HasMany
     {
