@@ -4,7 +4,6 @@ use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\TrackController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\VerifyApiKey;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,15 +22,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 Route::middleware([VerifyApiKey::class])->group(function () {
-
-    Route::get('/get-token', function (Request $request) {
-        return response()->json(['token' => session('auth_token')]);
-    });
-
     Route::get('/tracks', [TrackController::class, 'index']);
 
     Route::get('/events', [EventController::class, 'index']);
     Route::get('/events/{id}', [EventController::class, 'show']);
     Route::get('events/{id}/results', [EventController::class, 'getEventResults']);
 });
-
