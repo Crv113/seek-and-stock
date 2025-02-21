@@ -11,7 +11,10 @@ class UserController extends Controller
 {
     function show(Request $request): JsonResponse
     {
-        return response()->json($request->user());
+        return response()->json([
+            ...$request->user()->toArray(),
+            'roles' => auth()->user()->roles->pluck('name'),
+        ]);
     }
 
     function update(Request $request): JsonResponse
