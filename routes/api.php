@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\EventController;
+use App\Http\Controllers\Api\EventUserController;
 use App\Http\Controllers\Api\TrackController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\VerifyApiKey;
@@ -17,6 +18,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/tracks/{id}', [TrackController::class, 'update']);
 
     Route::post('/events', [EventController::class, 'store']);
+    Route::post('/events/{id}/register', [EventUserController::class, 'register']);
+    Route::post('/events/{id}/unregister', [EventUserController::class, 'unregister']);
 });
 
 
@@ -25,6 +28,7 @@ Route::middleware([VerifyApiKey::class])->group(function () {
     Route::get('/tracks', [TrackController::class, 'index']);
 
     Route::get('/events', [EventController::class, 'index']);
-    Route::get('/events/{id}', [EventController::class, 'show']);
+    Route::get('/events/{event}', [EventController::class, 'show']);
+    Route::get('/events/{event}/users', [EventController::class, 'listUsersGuid']);
     Route::get('events/{id}/results', [EventController::class, 'getEventResults']);
 });

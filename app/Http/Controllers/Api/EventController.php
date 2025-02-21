@@ -7,6 +7,7 @@ use App\Http\Resources\EventResource;
 use App\Http\Resources\LapTimeResource;
 use App\Models\Event;
 use App\Models\LapTime;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -62,7 +63,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        return $event;
+        return $event->load(['track:id,name,image']);
     }
 
     /**
@@ -101,6 +102,11 @@ class EventController extends Controller
     public function getEventResults($id) {
         $fastestLapTimes = LapTime::select('lap_times.*')
             ->join('races', 'lap_times.race_id', '=', 'races.id')
+            ->join('users', 'lap_times.player_guid', '=', 'users.guid')
+            ->join('event_user', function ($join) use ($id) {
+                $join->on('users.id', '=', 'event_user.user_id')
+                    ->where('event_user.event_id', '=', $id);
+            })
             ->joinSub(
                 DB::table('lap_times')
                     ->select('player_guid', DB::raw('MIN(lap_time) as min_lap_time'))
@@ -119,6 +125,11 @@ class EventController extends Controller
 
         return LapTimeResource::collection($fastestLapTimes);
 
+    }
+
+    public function listUsersGuid(Event $event): JsonResponse
+    {
+        return response()->json($event->users()->pluck('guid'));
     }
 }
 

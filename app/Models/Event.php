@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Event extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id';
     protected $fillable = ['name', 'image', 'starting_date', 'ending_date', 'track_id'];
 
     public function getImageAttribute(): ?string
@@ -24,5 +25,10 @@ class Event extends Model
     public function track(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Track::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'event_user')->withTimestamps();
     }
 }
