@@ -9,10 +9,14 @@ return new class extends Migration {
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('track_id');
             $table->string('name');
+            $table->string('image')->nullable();
             $table->dateTime('starting_date');
             $table->dateTime('ending_date');
             $table->timestamps();
+
+            $table->foreign('track_id')->references('id')->on('tracks')->onDelete('cascade');
         });
     }
 

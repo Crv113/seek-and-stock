@@ -22,6 +22,8 @@ RUN composer install --no-dev --optimize-autoloader --working-dir=/var/www/html
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
+RUN php artisan storage:link
+
 # Exposer le port 9000 pour PHP-FPM
 EXPOSE 9000
 

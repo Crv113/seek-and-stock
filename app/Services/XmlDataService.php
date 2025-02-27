@@ -11,7 +11,7 @@ use App\Models\Track;
 use DateTime;
 use Illuminate\Support\Facades\Log;
 
-class XmlDataService
+class  XmlDataService
 {
     public function processXmlFile($filePath): void
     {
@@ -25,20 +25,30 @@ class XmlDataService
             return;
         }
 
+        $track = Track::firstWhere('name', '=', $content->Track->Name); //TODO: tester findOrFail
+
+        if(empty($track)) {
+            Log::channel('seek_and_stock_process')->warning('Track from this race not found: ' . $content->Track->Name);
+            return;
+        }
+
+        $track->length = $content->Track->Length;
+        $track->save();
+
         // Recherche d'event correspondant à ces résultats de course
         $raceDate = new DateTime();
         $raceDate->setTimestamp((int)$content->Event->Date);
 
+
         $event = Event::where('starting_date', '<', $raceDate->format('Y-m-d H:i:s'))
             ->where('ending_date', '>', $raceDate->format('Y-m-d H:i:s'))
+            ->where('track_id', '=', $track->id)
             ->first();
 
         if(empty($event)) {
-            Log::channel('seek_and_stock_process')->warning('Event not found for this race (race date: ' . $raceDate->format('Y-m-d H:i:s') . ' )');
+            Log::channel('seek_and_stock_process')->warning('Event not found for this race (track_id: '.$track->id.',race date: '.$raceDate->format('Y-m-d H:i:s').' )');
             return;
         }
-
-        $track = Track::firstOrCreate(['name' => $content->Track->Name, 'length' => $content->Track->Length]);
 
         $race = Race::Create(['date' => $raceDate, 'track_id' => $track->id, 'event_id' => $event->id]);
 
@@ -93,7 +103,3 @@ class XmlDataService
         Log::channel('seek_and_stock_process')->info('Ending process ' . $filePath);
     }
 }
-
-//1699470000 8/11
-//1699642800 10/11
-//1700074800 15/11
