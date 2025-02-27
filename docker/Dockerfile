@@ -9,8 +9,6 @@ RUN apk update && apk add --no-cache \
     && docker-php-ext-enable redis \
     && apk del .build-deps
 
-RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
-
 # Copier le code Laravel
 WORKDIR /var/www/html
 COPY . .
