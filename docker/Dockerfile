@@ -9,27 +9,29 @@ RUN apk update && apk add --no-cache \
     && docker-php-ext-enable redis \
     && apk del .build-deps
 
-# Copier le code Laravel
+# Définir le répertoire de travail
 WORKDIR /var/www/html
-COPY . .
+
+# Créer les dossiers nécessaires avant de copier le code
+RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache \
 
 # Installer Composer
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader --working-dir=/var/www/html
 
+# Copier le reste du projet
+COPY . .
 
-# Définir les permissions pour www-data sur les dossiers nécessaires
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+# Vérifier et régénérer les permissions après la copie des fichiers
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache \
 
 RUN php artisan storage:link
 
 # Exposer le port 9000 pour PHP-FPM
 EXPOSE 9000
-
-COPY docker/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
 
 # Démarrer PHP-FPM
 CMD ["php-fpm"]
