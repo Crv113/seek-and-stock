@@ -6,6 +6,7 @@ services:
     volumes:
       - .:/var/www/html
       - /var/www/html/storage
+      - /var/www/html/vendor
     ports:
       - "${APP_PORT}:80"
     networks:
