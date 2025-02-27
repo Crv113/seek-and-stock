@@ -9,9 +9,6 @@ RUN apk update && apk add --no-cache \
     && docker-php-ext-enable redis \
     && apk del .build-deps
 
-# Modifier l'ID utilisateur et groupe de www-data pour éviter le problème de permissions
-RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
-
 # Copier le code Laravel
 WORKDIR /var/www/html
 COPY . .
@@ -29,6 +26,10 @@ RUN php artisan storage:link
 
 # Exposer le port 9000 pour PHP-FPM
 EXPOSE 9000
+
+COPY docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
 
 # Démarrer PHP-FPM
 CMD ["php-fpm"]
