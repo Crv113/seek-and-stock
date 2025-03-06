@@ -1,7 +1,7 @@
 services:
   app:
     build:
-      context: .
+      context: ..
       dockerfile: docker/Dockerfile
     volumes:
       - .:/var/www/html
@@ -17,7 +17,7 @@ services:
 
   horizon:
       build:
-          context: .
+          context: ..
           dockerfile: docker/Dockerfile
       volumes:
           - .:/var/www/html
@@ -40,7 +40,7 @@ services:
 
   scheduler:
       build:
-          context: .
+          context: ..
           dockerfile: docker/Dockerfile
       volumes:
           - .:/var/www/html
@@ -66,7 +66,7 @@ services:
     ports:
       - "${DB_PORT}:3306"
     env_file:
-      - .env
+      - ../.env
 
   nginx:
     image: nginx:alpine
