@@ -2,7 +2,7 @@ FROM php:8.2-fpm-alpine
 
 # Installer les extensions PHP et utilitaires
 RUN apk update && apk add --no-cache \
-    zip unzip git curl bash \
+    zip unzip git curl bash shadow \
     && docker-php-ext-install pdo pdo_mysql pcntl \
     && apk add --no-cache --virtual .build-deps gcc g++ make autoconf \
     && pecl install redis \
