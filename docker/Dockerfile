@@ -19,12 +19,17 @@ COPY . .
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader --working-dir=/var/www/html
 
-# Définir les permissions pour www-data sur les dossiers nécessaires
-RUN chown -R www-data:www-data /var/www
+# Gestion des droit utilisateur
+ARG USER_ID=1000
+RUN usermod -u $USER_ID www-data && \
+    chown -R www-data:www-data /var/www/html && \
+    chmod -R g+w /var/www/html && \
+    mkdir -p /run && chown -R www-data:www-data /run && \
+    echo "umask 002" >> /etc/profile && \
+    echo "umask 002" >> /var/www/.bashrc \
 
 # Exposer le port 9000 pour PHP-FPM
 EXPOSE 9000
 
 # Commande de démarrage
-RUN composer install --no-dev --optimize-autoloader --working-dir=/var/www/html || true
 CMD ["php-fpm"]
