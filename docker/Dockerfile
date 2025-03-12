@@ -26,7 +26,7 @@ RUN usermod -u $USER_ID www-data && \
     chmod -R g+w /var/www/html && \
     mkdir -p /run && chown -R www-data:www-data /run && \
     echo "umask 002" >> /etc/profile && \
-    echo "umask 002" >> /var/www/.bashrc \
+    echo "umask 002" >> /var/www/.bashrc
 
 # Exposer le port 9000 pour PHP-FPM
 EXPOSE 9000
