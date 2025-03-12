@@ -31,7 +31,7 @@ RUN usermod -u $USER_ID www-data && \
 # Exposer le port 9000 pour PHP-FPM
 EXPOSE 9000
 
-COPY phpfpm/entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
