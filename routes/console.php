@@ -11,11 +11,4 @@ Schedule::call(function () {
     $job->handle();
 })->name('SeekAndStock')
     ->everyMinute()
-    ->withoutOverlapping()
-    ->before(function () {
-        if (app(\Illuminate\Console\Scheduling\EventMutex::class)->exists(now(), 'SeekAndStock')) {
-            Log::channel('seek_and_stock_process')->warning('Overlap détecté : tâche précédente toujours en cours. Nouveau lancement annulé.');
-            return false;
-        }
-        return true;
-    });
+    ->withoutOverlapping();
