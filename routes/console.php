@@ -2,13 +2,20 @@
 
 use App\Jobs\SeekAndStockJob;
 use App\Services\XmlDataService;
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Facades\Artisan;
+
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schedule;
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote')->hourly();
-
-Schedule::job(new SeekAndStockJob(new XmlDataService()))
-    ->everyMinute();
+Schedule::call(function () {
+    $job = new SeekAndStockJob(new XmlDataService());
+    $job->handle();
+})->name('SeekAndStock')
+    ->everyMinute()
+    ->withoutOverlapping()
+    ->before(function () {
+        if (app(\Illuminate\Console\Scheduling\EventMutex::class)->exists(now(), 'SeekAndStock')) {
+            Log::channel('seek_and_stock_process')->warning('Overlap détecté : tâche précédente toujours en cours. Nouveau lancement annulé.');
+            return false;
+        }
+        return true;
+    });

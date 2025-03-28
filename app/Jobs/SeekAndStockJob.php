@@ -3,13 +3,12 @@
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
-class SeekAndStockJob implements ShouldQueue
+class SeekAndStockJob
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -24,7 +23,7 @@ class SeekAndStockJob implements ShouldQueue
     /**
      * Exécuter le Job.
      */
-    public function handle()
+    public function handle(): void
     {
         Log::channel('seek_and_stock_process')->info('Start seek_and_stock');
 
