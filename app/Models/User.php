@@ -60,7 +60,7 @@ class User extends Authenticatable
         static::created(function ($user) {
             $user->assignRole('user');
 
-            if ($user->email === env('SUPER_ADMIN_EMAIL')) {
+            if ($user->email === config('custom.super_admin_email')) {
                 $user->syncRoles(['admin']);
             }
         });
