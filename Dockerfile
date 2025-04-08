@@ -1,5 +1,8 @@
 FROM php:8.2-fpm
 
+ARG ENV=local
+ENV APP_ENV=$ENV
+
 # Dépendances système
 RUN apt-get update && apt-get install -y \
     zip unzip curl git libpng-dev libonig-dev libxml2-dev libzip-dev \
@@ -12,27 +15,24 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Dossier de travail
 WORKDIR /var/www/html
 
-# Étape 1 : copie artisan + bootstrap/cache + vendor placeholders
-COPY artisan .
-COPY composer.json composer.lock ./
-COPY bootstrap ./bootstrap
-COPY config ./config
-COPY routes ./routes
-COPY database ./database
+# Copie des fichiers
+COPY . /var/www/html
 
-# Étape 2 : installer les dépendances
-RUN composer install --no-dev --optimize-autoloader
 
-# Étape 3 : copier le reste du projet
-COPY . .
+
+
 
 # Script wait-db
-COPY wait-db.sh /usr/local/bin/wait-db.sh
+COPY /wait-db.sh /usr/local/bin/wait-db.sh
 RUN chmod +x /usr/local/bin/wait-db.sh
 
-# Permissions Laravel
-RUN git config --global --add safe.directory /var/www/html && \
-    chown -R www-data:www-data /var/www/html && \
-    chmod -R 775 storage bootstrap/cache
-
-
+# Artisan / composer
+RUN if [ "$APP_ENV" = "prod" ]; then \
+      git config --global --add safe.directory /var/www/html && \
+      chown -R www-data:www-data /var/www/html && \
+      chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache && \
+      composer install --no-dev --optimize-autoloader; \
+    else \
+      composer install && \
+      chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache; \
+    fi
