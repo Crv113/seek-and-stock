@@ -18,6 +18,7 @@ COPY composer.json composer.lock ./
 COPY bootstrap ./bootstrap
 COPY config ./config
 COPY routes ./routes
+COPY database ./database
 
 # Étape 2 : installer les dépendances
 RUN composer install --no-dev --optimize-autoloader
