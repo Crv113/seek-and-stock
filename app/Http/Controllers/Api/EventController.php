@@ -100,6 +100,7 @@ class EventController extends Controller
     }
 
     public function getEventResults($id) {
+
         $fastestLapTimes = LapTime::select('lap_times.*')
             ->join('races', 'lap_times.race_id', '=', 'races.id')
             ->join('users', 'lap_times.player_guid', '=', 'users.guid')
@@ -109,10 +110,12 @@ class EventController extends Controller
             })
             ->joinSub(
                 DB::table('lap_times')
-                    ->select('player_guid', DB::raw('MIN(lap_time) as min_lap_time'))
-                    ->where('fastest', true)
-                    ->where('invalid', 0)
-                    ->groupBy('player_guid'),
+                    ->join('races', 'lap_times.race_id', '=', 'races.id') // ← Jointure ici
+                    ->select('lap_times.player_guid', DB::raw('MIN(lap_times.lap_time) as min_lap_time'))
+                    ->where('lap_times.fastest', true)
+                    ->where('lap_times.invalid', 0)
+                    ->where('races.event_id', $id) // ← Filtre sur l'event ici
+                    ->groupBy('lap_times.player_guid'),
                 'fastest_laps',
                 function ($join) {
                     $join->on('lap_times.player_guid', '=', 'fastest_laps.player_guid')
