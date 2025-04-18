@@ -47,7 +47,7 @@ class LapTimeController extends Controller
             $validated['average_speed'] = (float) $validated['average_speed'];
         }
 
-        $lap_time_sector_3 = $validated['lap_time'] - ($validated['lap_time_sector_1'] + $validated['lap_time_sector_2']);
+        $lap_time_sector_3 = $validated['lap_time'] - $validated['lap_time_sector_2'];
 
         $lapTime = LapTime::create([
             'event_id' => $event->id,
