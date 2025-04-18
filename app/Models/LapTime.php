@@ -11,23 +11,20 @@ class LapTime extends Model
     use HasFactory;
 
     protected $fillable = [
-        'lap_no',
         'lap_time',
         'lap_time_sector_1',
         'lap_time_sector_2',
         'lap_time_sector_3',
         'average_speed',
-        'fastest',
-        'invalid',
-        'race_id',
+        'event_id',
         'bike_id',
         'player_guid',
         'player_name'
         ];
 
-    public function race():BelongsTo
+    public function event():BelongsTo
     {
-        return $this->belongsTo(Race::class);
+        return $this->belongsTo(Event::class);
     }
 
     public function bike(): BelongsTo

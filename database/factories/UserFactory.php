@@ -29,6 +29,12 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'discord_id' => Str::random(10),
+            'discord_username' => fake()->name,
+            'discord_global_name' => fake()->name,
+            'discord_avatar' => fake()->image,
+            'discord_locale' => fake()->word,
+            'guid' => fake()->uuid,
         ];
     }
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Event extends Model
@@ -17,12 +18,12 @@ class Event extends Model
         return $this->attributes['image'] ? asset('storage/' . $this->attributes['image']) : null;
     }
 
-    public function races(): HasMany
+    public function lapTimes(): HasMany
     {
-        return $this->hasMany(Race::class);
+        return $this->hasMany(LapTime::class);
     }
 
-    public function track(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function track(): BelongsTo
     {
         return $this->belongsTo(Track::class);
     }

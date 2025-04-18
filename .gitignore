@@ -20,3 +20,4 @@ yarn-error.log
 local_resources
 storage/logs/
 bootstrap/cache/*.php
+.env.dev

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\EventResource;
 use App\Http\Resources\LapTimeResource;
 use App\Models\Event;
 use App\Models\LapTime;
@@ -102,7 +101,6 @@ class EventController extends Controller
     public function getEventResults($id) {
 
         $fastestLapTimes = LapTime::select('lap_times.*')
-            ->join('races', 'lap_times.race_id', '=', 'races.id')
             ->join('users', 'lap_times.player_guid', '=', 'users.guid')
             ->join('event_user', function ($join) use ($id) {
                 $join->on('users.id', '=', 'event_user.user_id')
@@ -110,11 +108,8 @@ class EventController extends Controller
             })
             ->joinSub(
                 DB::table('lap_times')
-                    ->join('races', 'lap_times.race_id', '=', 'races.id') // ← Jointure ici
                     ->select('lap_times.player_guid', DB::raw('MIN(lap_times.lap_time) as min_lap_time'))
-                    ->where('lap_times.fastest', true)
-                    ->where('lap_times.invalid', 0)
-                    ->where('races.event_id', $id) // ← Filtre sur l'event ici
+                    ->where('lap_times.event_id', $id)
                     ->groupBy('lap_times.player_guid'),
                 'fastest_laps',
                 function ($join) {
@@ -122,7 +117,7 @@ class EventController extends Controller
                         ->on('lap_times.lap_time', '=', 'fastest_laps.min_lap_time');
                 }
             )
-            ->where('races.event_id', $id)
+            ->where('lap_times.event_id', $id)
             ->orderBy('lap_times.lap_time')
             ->get();
 

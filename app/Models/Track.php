@@ -19,9 +19,4 @@ class Track extends Model
     {
         return $this->attributes['image'] ? asset('storage/' . $this->attributes['image']) : null;
     }
-
-    public function races():HasMany
-    {
-        return $this->hasMany(Race::class);
-    }
 }

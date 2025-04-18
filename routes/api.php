@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\EventUserController;
+use App\Http\Controllers\Api\LapTimeController;
 use App\Http\Controllers\Api\TrackController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Middleware\VerifyApiKey;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::middleware([VerifyApiKey::class])->group(function () {
     Route::get('/tracks', [TrackController::class, 'index']);
+    Route::post('/laptimes', [LapTimeController::class, 'store']);
 
     Route::get('/events', [EventController::class, 'index']);
     Route::get('/events/{event}', [EventController::class, 'show']);
