@@ -18,10 +18,6 @@ WORKDIR /var/www/html
 # Copie des fichiers
 COPY . /var/www/html
 
-
-
-
-
 # Script wait-db
 COPY /wait-db.sh /usr/local/bin/wait-db.sh
 RUN chmod +x /usr/local/bin/wait-db.sh
