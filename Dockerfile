@@ -27,7 +27,9 @@ RUN chmod +x /usr/local/bin/wait-db.sh
 RUN git config --global --add safe.directory /var/www/html && \
     chown -R www-data:www-data /var/www/html && \
     chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache && \
-    if [ "$APP_ENV" = "local" ]; then \
+    if [ "$APP_ENV" = "prod" ] || [ "$APP_ENV" = "dev" ]; then \
+        composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev; \
+    else \
         composer install --no-interaction --prefer-dist; \
     fi
 
