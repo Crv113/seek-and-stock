@@ -21,7 +21,9 @@ return [
 
     'allowed_origins' => [
         'http://127.0.0.1:3000',
+        'http://127.0.0.1:5173',
         'http://localhost:3000',
+        'http://localhost:5173',
         'https://mxbtiming.com',
         'https://api.mxbtiming.com',
         'https://dev.mxbtiming.com',

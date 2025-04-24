@@ -32,5 +32,3 @@ RUN git config --global --add safe.directory /var/www/html && \
     else \
         composer install --no-interaction --prefer-dist; \
     fi
-
-#      chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache; \
