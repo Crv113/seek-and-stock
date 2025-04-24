@@ -19,7 +19,16 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://127.0.0.1:3000', 'http://localhost:3000', 'https://mxbtiming.com', 'https://api.mxbtiming.com', 'https://dev.mxbtiming.com', 'https://dev.api.mxbtiming.com'],
+    'allowed_origins' => [
+        'http://127.0.0.1:3000',
+        'http://localhost:3000',
+        'https://mxbtiming.com',
+        'https://api.mxbtiming.com',
+        'https://dev.mxbtiming.com',
+        'https://dev.mxbtiming.com:8443',
+        'https://dev.api.mxbtiming.com',
+        'https://dev.api.mxbtiming.com:8443'
+    ],
 
     'allowed_origins_patterns' => [],
 
