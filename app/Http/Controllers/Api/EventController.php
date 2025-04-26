@@ -107,14 +107,15 @@ class EventController extends Controller
                     ->where('event_user.event_id', '=', $id);
             })
             ->joinSub(
-                DB::table('lap_times')
-                    ->select('lap_times.player_guid', DB::raw('MIN(lap_times.lap_time) as min_lap_time'))
-                    ->where('lap_times.event_id', $id)
-                    ->groupBy('lap_times.player_guid'),
+                DB::table('lap_times as lt')
+                    ->select('lt.player_guid', DB::raw('MIN(lt.lap_time) as min_lap_time'), DB::raw('MIN(lt.id) as min_id'))
+                    ->where('lt.event_id', $id)
+                    ->groupBy('lt.player_guid'),
                 'fastest_laps',
                 function ($join) {
                     $join->on('lap_times.player_guid', '=', 'fastest_laps.player_guid')
-                        ->on('lap_times.lap_time', '=', 'fastest_laps.min_lap_time');
+                        ->on('lap_times.lap_time', '=', 'fastest_laps.min_lap_time')
+                        ->on('lap_times.id', '=', 'fastest_laps.min_id');
                 }
             )
             ->where('lap_times.event_id', $id)
