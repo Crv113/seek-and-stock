@@ -101,7 +101,7 @@ class EventController extends Controller
     public function getEventResults($id) {
 
         $subQuery = DB::table('lap_times')
-            ->select('player_guid', DB::raw('MIN(lap_time) as min_lap_time'), DB::raw('MIN(id) as min_id'))
+            ->select('player_guid', DB::raw('MIN(lap_time) as min_lap_time'))
             ->where('event_id', $id)
             ->whereIn('player_guid', function ($query) {
                 $query->select('guid')->from('users');
@@ -111,7 +111,8 @@ class EventController extends Controller
         $fastestLapTimes = LapTime::with('user')
             ->where('event_id', $id)
             ->joinSub($subQuery, 'fastest_laps', function ($join) {
-                $join->on('lap_times.id', '=', 'fastest_laps.min_id');
+                $join->on('lap_times.player_guid', '=', 'fastest_laps.player_guid')
+                    ->on('lap_times.lap_time', '=', 'fastest_laps.min_lap_time');
             })
             ->orderBy('lap_times.lap_time')
             ->get();
