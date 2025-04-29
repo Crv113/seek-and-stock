@@ -39,9 +39,3 @@ Route::middleware([VerifyApiKey::class])->group(function () {
     Route::get('/events/{event}/users', [EventController::class, 'listUsersGuid']);
     Route::get('events/{id}/results', [EventController::class, 'getEventResults']);
 });
-
-Route::get('/cors-test', function () {
-    Log::info('Origin: ' . request()->header('Origin'));
-    return response()->json(['status' => 'ok']);
-});
-
