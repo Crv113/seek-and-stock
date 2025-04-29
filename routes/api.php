@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\TrackController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Middleware\VerifyApiKey;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 
