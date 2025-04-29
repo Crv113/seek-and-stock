@@ -31,4 +31,10 @@ class LapTime extends Model
     {
         return $this->belongsTo(Bike::class);
     }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'player_guid', 'guid')
+            ->select(['id', 'name', 'guid']);
+    }
 }

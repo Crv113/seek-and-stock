@@ -100,22 +100,19 @@ class EventController extends Controller
 
     public function getEventResults($id) {
 
-        $fastestLapTimes = LapTime::select('lap_times.*')
-            ->join('users', 'lap_times.player_guid', '=', 'users.guid')
-            ->join('event_user', function ($join) use ($id) {
-                $join->on('users.id', '=', 'event_user.user_id')
-                    ->where('event_user.event_id', '=', $id);
+        $subQuery = DB::table('lap_times')
+            ->select('player_guid', DB::raw('MIN(lap_time) as min_lap_time'), DB::raw('MIN(id) as min_id'))
+            ->where('event_id', $id)
+            ->whereIn('player_guid', function ($query) {
+                $query->select('guid')->from('users');
             })
-            ->where('lap_times.id', function($query) use ($id) {
-                $query->selectRaw('id')
-                    ->from('lap_times as lt2')
-                    ->whereColumn('lt2.player_guid', 'lap_times.player_guid')
-                    ->where('lt2.event_id', $id)
-                    ->orderBy('lt2.lap_time')
-                    ->orderBy('lt2.id')
-                    ->limit(1);
+            ->groupBy('player_guid');
+
+        $fastestLapTimes = LapTime::with('user')
+            ->where('event_id', $id)
+            ->joinSub($subQuery, 'fastest_laps', function ($join) {
+                $join->on('lap_times.id', '=', 'fastest_laps.min_id');
             })
-            ->where('lap_times.event_id', $id)
             ->orderBy('lap_times.lap_time')
             ->get();
 
