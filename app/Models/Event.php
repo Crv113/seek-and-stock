@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Event extends Model
 {
@@ -31,5 +32,15 @@ class Event extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'event_user')->withTimestamps();
+    }
+
+    public function bestLapTime(): HasOne
+    {
+        return $this->hasOne(LapTime::class, 'event_id', 'id')
+            ->whereIn('player_guid', function ($query) {
+                $query->select('guid')->from('users');
+            })
+            ->orderBy('lap_time')
+            ->orderBy('id');
     }
 }

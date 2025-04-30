@@ -24,6 +24,7 @@ class LapTimeResource extends JsonResource
             'lap_time_sector_2' => $this->lap_time_sector_2,
             'lap_time_sector_3' => $this->lap_time_sector_3,
             'bike' => new BikeResource($this->bike),
+            'created_at' => $this->created_at,
         ];
     }
 }

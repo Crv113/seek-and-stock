@@ -18,8 +18,14 @@ class EventController extends Controller
      */
     public function index()
     {
-        return Event::with('track:id,name,image')->orderBy('ending_date', 'desc')->get();
+        return Event::with([
+            'track:id,name,image',
+            'bestLapTime:id,event_id,player_name,lap_time,player_guid'
+        ])
+            ->orderBy('ending_date', 'desc')
+            ->get();
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -62,7 +68,10 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        return $event->load(['track:id,name,image']);
+        return $event->load([
+            'track:id,name,image',
+            'bestLapTime:id,event_id,player_name,lap_time,player_guid'
+        ]);
     }
 
     /**
