@@ -16,6 +16,7 @@ class LapTimeResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'user_id' => $this->user->id,
             'player_guid' => $this->player_guid,
             'player_name' => $this->player_name,
             'average_speed' =>$this->average_speed,

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::get('/user', [UserController::class, 'show']);
+    Route::get('/me', [UserController::class, 'me']);
     Route::put('/user', [UserController::class, 'update']);
     Route::post('/user/logout', [UserController::class, 'logout']);
 
@@ -36,4 +36,7 @@ Route::middleware([VerifyApiKey::class])->group(function () {
     Route::get('/events/{event}', [EventController::class, 'show']);
     Route::get('/events/{event}/users', [EventController::class, 'listUsersGuid']);
     Route::get('events/{id}/results', [EventController::class, 'getEventResults']);
+
+    Route::get('/users/{user}', [UserController::class, 'show']);
+
 });
