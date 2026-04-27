@@ -10,10 +10,17 @@ class GetUserVictories
 {
     public function handle(User $user)
     {
-        // Sous-requête : meilleur temps par event
+        // Sous-requête : meilleur temps par event terminé, uniquement parmi les joueurs ayant un compte
         $bestLapTimes = DB::table('lap_times')
-            ->select('event_id', DB::raw('MIN(lap_time) as best_time'))
-            ->groupBy('event_id');
+            ->select('lap_times.event_id', DB::raw('MIN(lap_times.lap_time) as best_time'))
+            ->join('events', 'events.id', '=', 'lap_times.event_id')
+            ->where('events.ending_date', '<=', now())
+            ->whereExists(function ($query) {
+                $query->select(DB::raw(1))
+                    ->from('users')
+                    ->whereColumn('users.guid', 'lap_times.player_guid');
+            })
+            ->groupBy('lap_times.event_id');
 
         // Deuxième requête : récupérer le lap_time du user s’il est le plus rapide
         $winningIds = DB::table('lap_times as lt')
