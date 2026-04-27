@@ -26,7 +26,7 @@ class GetUserBestLapTimes
             ->select(DB::raw('MIN(lt.id) as id'))
             ->pluck('id');
 
-        $bestLapTimes = LapTime::with('event', 'bike.category')
+        $bestLapTimes = LapTime::with('event.track', 'bike.category')
             ->whereIn('id', $bestIds)
             ->orderBy('event_id')
             ->get();

@@ -31,6 +31,10 @@ class UserResource extends JsonResource
             'roles' => $this->getRoleNames(),
             'participation_count' => $bestLapTimes->count(),
             'victory_count' => count($this->victories ?? []),
+            'best_lap_times_by_track' => $bestLapTimes
+                ->groupBy(fn($lt) => $lt->event->track->id)
+                ->map(fn($group) => $group->sortBy('lap_time')->first())
+                ->values(),
             'bike_stats_by_category' => $bestLapTimes
                 ->filter(fn($lt) => $lt['bike'] && isset($lt['bike']['category']['name']))
                 ->groupBy(fn($lt) => $lt['bike']['category']['name'])
