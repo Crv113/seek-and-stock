@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Actions\GetTrackResults;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\LapTimeResource;
 use App\Models\Track;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -47,6 +49,11 @@ class TrackController extends Controller
     public function show(Track $track)
     {
         return $track;
+    }
+
+    public function results(Track $track, GetTrackResults $getTrackResults)
+    {
+        return LapTimeResource::collection($getTrackResults->handle($track));
     }
 
     public function update(Request $request, int $id): JsonResponse

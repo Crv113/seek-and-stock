@@ -30,6 +30,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::middleware([VerifyApiKey::class])->group(function () {
     Route::get('/tracks', [TrackController::class, 'index']);
+    Route::get('/tracks/{track}', [TrackController::class, 'show']);
+    Route::get('/tracks/{track}/results', [TrackController::class, 'results']);
     Route::post('/laptimes', [LapTimeController::class, 'store']);
 
     Route::get('/events', [EventController::class, 'index']);
