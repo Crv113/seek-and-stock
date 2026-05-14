@@ -30,7 +30,7 @@ class UserResource extends JsonResource
             'best_lap_times' => $bestLapTimes,
             'roles' => $this->getRoleNames(),
             'participation_count' => $bestLapTimes->count(),
-            'victory_count' => count($this->victories ?? []),
+            'victory_count' => $this->victory_count ?? 0,
             'best_lap_times_by_track' => $bestLapTimes
                 ->groupBy(fn($lt) => $lt->event->track->id)
                 ->map(fn($group) => $group->sortBy('lap_time')->first())
