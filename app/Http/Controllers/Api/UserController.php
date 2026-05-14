@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+    function index()
+    {
+        return User::select('id', 'name', 'discord_id', 'discord_global_name', 'discord_avatar')
+            ->orderBy('name')
+            ->get();
+    }
+
     function show(User $user, GetUserBestLapTimes $get_user_best_lap_times, GetUserVictories $get_user_victories): UserResource
     {
         $user->best_lap_times = $get_user_best_lap_times->handle($user);
