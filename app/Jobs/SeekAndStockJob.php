@@ -2,6 +2,8 @@
 
 namespace App\Jobs;
 
+// N'est plus utilisé depuis que le process de fichier XML à été remplacé par le livetiming qui envoie les données directement à l'API.
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
