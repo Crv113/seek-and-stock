@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+// N'est plus utilisé depuis que le process de fichier XML à été remplacé par le livetiming qui envoie les données directement à l'API.
+
 use App\Models\Bike;
 use App\Models\Category;
 use App\Models\Event;
