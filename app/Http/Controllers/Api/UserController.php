@@ -3,49 +3,51 @@
 namespace App\Http\Controllers\Api;
 
 use App\Actions\GetUserBestLapTimes;
+use App\Actions\GetUsersFavoriteBikes;
 use App\Actions\GetUsersParticipationCounts;
 use App\Actions\GetUsersVictoryCounts;
-use App\Actions\GetUsersFavoriteBikes;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use App\Models\User;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    function index(
+    public function index(
         GetUsersParticipationCounts $participationCounts,
         GetUsersVictoryCounts $victoryCounts,
         GetUsersFavoriteBikes $favoriteBikes,
     ) {
-        $users = User::select('id', 'name', 'discord_id', 'discord_global_name', 'discord_avatar')
+        $users = User::select('id', 'name', 'discord_id', 'discord_global_name', 'discord_username', 'discord_avatar')
             ->orderBy('name')
             ->get();
 
-        $userIds        = $users->pluck('id');
+        $userIds = $users->pluck('id');
         $participations = $participationCounts->handle($userIds);
-        $victories      = $victoryCounts->handle($userIds);
-        $bikes          = $favoriteBikes->handle($userIds);
+        $victories = $victoryCounts->handle($userIds);
+        $bikes = $favoriteBikes->handle($userIds);
 
-        return $users->map(fn($user) => [
-            'id'                  => $user->id,
-            'name'                => $user->name,
-            'discord_id'          => $user->discord_id,
+        return $users->map(fn ($user) => [
+            'id' => $user->id,
+            'name' => $user->name,
+            'discord_id' => $user->discord_id,
             'discord_global_name' => $user->discord_global_name,
-            'discord_avatar'      => $user->discord_avatar,
+            'discord_username' => $user->discord_username,
+            'discord_avatar' => $user->discord_avatar,
             'participation_count' => $participations[$user->id] ?? 0,
-            'victory_count'       => $victories[$user->id] ?? 0,
-            'favorite_bike'       => $bikes[$user->id] ?? null,
+            'victory_count' => $victories[$user->id] ?? 0,
+            'favorite_bike' => $bikes[$user->id] ?? null,
         ]);
     }
 
-    function show(User $user, GetUserBestLapTimes $bestLapTimes, GetUsersVictoryCounts $victoryCounts): UserResource
+    public function show(User $user, GetUserBestLapTimes $bestLapTimes, GetUsersVictoryCounts $victoryCounts): UserResource
     {
         $user->best_lap_times = $bestLapTimes->handle($user);
-        $user->victory_count  = $victoryCounts->handle(collect([$user->id]))[$user->id] ?? 0;
+        $user->victory_count = $victoryCounts->handle(collect([$user->id]))[$user->id] ?? 0;
+
         return new UserResource($user);
     }
 
@@ -54,12 +56,12 @@ class UserController extends Controller
         $user = auth()->user();
 
         $user->best_lap_times = $bestLapTimes->handle($user);
-        $user->victory_count  = $victoryCounts->handle(collect([$user->id]))[$user->id] ?? 0;
+        $user->victory_count = $victoryCounts->handle(collect([$user->id]))[$user->id] ?? 0;
 
         return new UserResource($user);
     }
 
-    function update(Request $request): JsonResponse
+    public function update(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
             'guid' => 'sometimes|string|unique:users,guid',
@@ -76,7 +78,7 @@ class UserController extends Controller
             ], 422);
         }
 
-        if (!$request->has('guid') && !$request->has('name')) {
+        if (! $request->has('guid') && ! $request->has('name')) {
             return response()->json([
                 'message' => 'No data to update.',
             ], 400);
@@ -84,8 +86,12 @@ class UserController extends Controller
 
         $user = Auth::user();
 
-        if($request->has("guid")) $user->guid = $request->guid;
-        if($request->has("name")) $user->name = $request->name;
+        if ($request->has('guid')) {
+            $user->guid = $request->guid;
+        }
+        if ($request->has('name')) {
+            $user->name = $request->name;
+        }
         $user->save();
 
         return response()->json([
@@ -94,7 +100,7 @@ class UserController extends Controller
         ]);
     }
 
-    function logout(Request $request)
+    public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
 

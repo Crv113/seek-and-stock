@@ -23,6 +23,7 @@ class UserResource extends JsonResource
             'guid' => $this->guid,
             'discord_id' => $this->discord_id,
             'discord_global_name' => $this->discord_global_name,
+            'discord_username' => $this->discord_username,
             'discord_avatar' => $this->discord_avatar,
             'discord_locale' => $this->discord_locale,
             'created_at' => $this->created_at,
@@ -32,17 +33,17 @@ class UserResource extends JsonResource
             'participation_count' => $bestLapTimes->count(),
             'victory_count' => $this->victory_count ?? 0,
             'best_lap_times_by_track' => $bestLapTimes
-                ->groupBy(fn($lt) => $lt->event->track->id)
-                ->map(fn($group) => $group->sortBy('lap_time')->first())
+                ->groupBy(fn ($lt) => $lt->event->track->id)
+                ->map(fn ($group) => $group->sortBy('lap_time')->first())
                 ->values(),
             'bike_stats_by_category' => $bestLapTimes
-                ->filter(fn($lt) => $lt['bike'] && isset($lt['bike']['category']['name']))
-                ->groupBy(fn($lt) => $lt['bike']['category']['name'])
+                ->filter(fn ($lt) => $lt['bike'] && isset($lt['bike']['category']['name']))
+                ->groupBy(fn ($lt) => $lt['bike']['category']['name'])
                 ->mapWithKeys(function ($group, $categoryName) {
                     return [
                         $categoryName => collect($group)
-                            ->groupBy(fn($lt) => $lt['bike']['name'])
-                            ->map(fn($bikes) => $bikes->count())
+                            ->groupBy(fn ($lt) => $lt['bike']['name'])
+                            ->map(fn ($bikes) => $bikes->count()),
                     ];
                 }),
         ];
