@@ -19,7 +19,7 @@ class GetUsersVictoryCounts
         $winners = DB::table('lap_times as lt')
             ->joinSub($bestTimesPerEvent, 'best', function ($join) {
                 $join->on('lt.event_id', '=', 'best.event_id')
-                     ->on('lt.lap_time', '=', 'best.best_time');
+                    ->on('lt.lap_time', '=', 'best.best_time');
             })
             ->join('users as u', 'u.guid', '=', 'lt.player_guid')
             ->select('lt.event_id', DB::raw('MIN(lt.id) as winning_lap_id'))

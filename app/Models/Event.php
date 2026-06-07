@@ -11,12 +11,14 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Event extends Model
 {
     use HasFactory;
+
     protected $primaryKey = 'id';
+
     protected $fillable = ['name', 'image', 'starting_date', 'ending_date', 'track_id'];
 
     public function getImageAttribute(): ?string
     {
-        return $this->attributes['image'] ? asset('storage/' . $this->attributes['image']) : null;
+        return $this->attributes['image'] ? asset('storage/'.$this->attributes['image']) : null;
     }
 
     public function lapTimes(): HasMany

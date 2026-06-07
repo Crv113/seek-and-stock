@@ -29,12 +29,12 @@ class SeekAndStockJob
     {
         Log::channel('seek_and_stock_process')->info('Start seek_and_stock');
 
-        $files = glob(config('custom.results_path_docker') . '/mxbt-*.xml');
+        $files = glob(config('custom.results_path_docker').'/mxbt-*.xml');
 
-        Log::channel('seek_and_stock_process')->info(count($files) . ' files found.');
+        Log::channel('seek_and_stock_process')->info(count($files).' files found.');
 
-        $oldResultsDir = config('custom.results_path_docker') . '/oldResults';
-        if (!file_exists($oldResultsDir)) {
+        $oldResultsDir = config('custom.results_path_docker').'/oldResults';
+        if (! file_exists($oldResultsDir)) {
             mkdir($oldResultsDir, 0755, true);
             Log::channel('seek_and_stock_process')->info("Directory '$oldResultsDir' created.");
         }
@@ -43,7 +43,7 @@ class SeekAndStockJob
             try {
                 $this->xmlService->processXmlFile($file);
 
-                $destinationPath = $oldResultsDir . '/' . basename($file);
+                $destinationPath = $oldResultsDir.'/'.basename($file);
                 if (rename($file, $destinationPath)) {
                     Log::channel('seek_and_stock_process')->info("File '$file' moved to '$destinationPath'.");
                 } else {
@@ -51,7 +51,7 @@ class SeekAndStockJob
                 }
 
             } catch (\Exception $e) {
-                Log::channel('seek_and_stock_process')->error("Error processing file '$file': " . $e->getMessage());
+                Log::channel('seek_and_stock_process')->error("Error processing file '$file': ".$e->getMessage());
             }
 
         }

@@ -148,7 +148,7 @@ class AnonymousPlayerTest extends TestCase
             'guid' => $guid,
             'player_name' => 'StatsPlayer',
         ]);
-        $response->assertJsonStructure(['data' => ['guid', 'player_name', 'user_id', 'best_lap_times']]);
+        $response->assertJsonStructure(['data' => ['guid', 'player_name', 'user_id', 'best_lap_times_by_track']]);
     }
 
     public function test_get_player_by_unknown_guid_returns_404(): void
@@ -165,5 +165,26 @@ class AnonymousPlayerTest extends TestCase
         $response = $this->getJson('/api/players/some-guid');
 
         $response->assertStatus(401);
+    }
+
+    public function test_merge_does_not_overwrite_existing_user_id(): void
+    {
+        $user1 = User::factory()->create(['guid' => null]);
+        $user2 = User::factory()->create(['guid' => null]);
+        $guid = 'merge-guid-protected';
+
+        AnonymousUser::factory()->create(['guid' => $guid, 'user_id' => $user2->id]);
+
+        Sanctum::actingAs($user1);
+
+        $response = $this->putJson('/api/user', ['guid' => $guid]);
+
+        $response->assertStatus(200);
+        $response->assertJsonFragment(['merged' => false]);
+
+        $this->assertDatabaseHas('anonymous_users', [
+            'guid' => $guid,
+            'user_id' => $user2->id,
+        ]);
     }
 }

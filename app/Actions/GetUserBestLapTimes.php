@@ -2,13 +2,14 @@
 
 namespace App\Actions;
 
+use App\Models\LapTime;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-use App\Models\LapTime;
 
 class GetUserBestLapTimes
 {
-    public function handle(User $user) {
+    public function handle(User $user)
+    {
         $subQuery = DB::table('lap_times as lt')
             ->join('users as u', 'u.guid', '=', 'lt.player_guid')
             ->where('u.id', $user->id)
