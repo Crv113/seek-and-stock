@@ -6,6 +6,7 @@ use App\Actions\GetUserBestLapTimes;
 use App\Actions\GetUsersFavoriteBikes;
 use App\Actions\GetUsersParticipationCounts;
 use App\Actions\GetUsersVictoryCounts;
+use App\Actions\MergeAnonymousLaptimes;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -94,9 +95,15 @@ class UserController extends Controller
         }
         $user->save();
 
+        $merged = false;
+        if ($request->has('guid')) {
+            $merged = (new MergeAnonymousLaptimes)->handle($user);
+        }
+
         return response()->json([
             'message' => 'User updated successfully.',
             'user' => $user,
+            'merged' => $merged,
         ]);
     }
 

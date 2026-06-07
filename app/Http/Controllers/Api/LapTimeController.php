@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\AnonymousUser;
 use App\Models\Bike;
 use App\Models\Category;
 use App\Models\Event;
 use App\Models\LapTime;
 use App\Models\Track;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -55,14 +57,22 @@ class LapTimeController extends Controller
             'player_guid' => $validated['player_guid'],
             'player_name' => $validated['player_name'],
             'bike_id' => $bike->id,
-//            'average_speed' => $validated['average_speed'] ?? null,
+            //            'average_speed' => $validated['average_speed'] ?? null,
             'lap_time' => $validated['lap_time'],
             'lap_time_sector_1' => $validated['lap_time_sector_1'],
             'lap_time_sector_2' => $lap_time_sector_2,
             'lap_time_sector_3' => $lap_time_sector_3,
         ]);
 
+        $isKnownPlayer = User::where('guid', $validated['player_guid'])->exists();
+
+        if (! $isKnownPlayer) {
+            AnonymousUser::updateOrCreate(
+                ['guid' => $validated['player_guid']],
+                ['player_name' => $validated['player_name'] ?? '']
+            );
+        }
+
         return response()->json(['message' => 'LapTime saved', 'lapTime' => $lapTime], 201);
     }
-
 }
