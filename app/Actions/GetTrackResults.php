@@ -38,6 +38,7 @@ class GetTrackResults
             ->leftJoin('anonymous_users as au', 'au.guid', '=', 'lap_times.player_guid')
             ->select('lap_times.*', 'users.id as resolved_user_id', 'au.id as resolved_anonymous_user_id')
             ->orderBy('lap_times.lap_time')
+            ->orderBy('lap_times.id')
             ->get();
     }
 }
