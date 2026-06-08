@@ -29,14 +29,15 @@ class GetEventResults
             ->groupBy('lap_times.player_guid');
 
         // Requête finale : on récupère les lignes complètes
-        $fastestLapTimes = LapTime::with('user', 'anonymousUser')
+        return LapTime::with('bike.category')
             ->joinSub($selectedIds, 'final_ids', function ($join) {
                 $join->on('lap_times.id', '=', 'final_ids.id');
             })
+            ->leftJoin('users', 'users.guid', '=', 'lap_times.player_guid')
+            ->leftJoin('anonymous_users as au', 'au.guid', '=', 'lap_times.player_guid')
+            ->select('lap_times.*', 'users.id as resolved_user_id', 'au.id as resolved_anonymous_user_id')
             ->orderBy('lap_times.lap_time')
             ->get();
-
-        return $fastestLapTimes;
 
     }
 }

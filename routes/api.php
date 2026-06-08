@@ -40,6 +40,7 @@ Route::middleware([VerifyApiKey::class])->group(function () {
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/users/{user}', [UserController::class, 'show']);
 
-    Route::get('/players/{guid}', [AnonymousPlayerController::class, 'show']);
+    Route::get('/players', [AnonymousPlayerController::class, 'index']);
+    Route::get('/players/{anonymousUser}', [AnonymousPlayerController::class, 'show']);
 
 });

@@ -136,33 +136,57 @@ class AnonymousPlayerTest extends TestCase
         $response->assertJsonFragment(['merged' => false]);
     }
 
+    public function test_get_players_index_returns_anonymous_users_without_user_id(): void
+    {
+        AnonymousUser::factory()->create(['player_name' => 'AnonOne', 'user_id' => null]);
+        AnonymousUser::factory()->create(['player_name' => 'AnonTwo', 'user_id' => null]);
+        $linked = User::factory()->create(['guid' => null]);
+        AnonymousUser::factory()->create(['player_name' => 'Linked', 'user_id' => $linked->id]);
+
+        $response = $this->getJson('/api/players', $this->apiKeyHeader());
+
+        $response->assertStatus(200);
+        $data = $response->json();
+        $names = collect($data)->pluck('player_name');
+        $this->assertTrue($names->contains('AnonOne'));
+        $this->assertTrue($names->contains('AnonTwo'));
+        $this->assertFalse($names->contains('Linked'));
+    }
+
+    public function test_get_players_index_requires_api_key(): void
+    {
+        $response = $this->getJson('/api/players');
+
+        $response->assertStatus(401);
+    }
+
     public function test_get_player_by_guid_returns_stats(): void
     {
         $guid = 'player-guid-stats';
         $anon = AnonymousUser::factory()->create(['guid' => $guid, 'player_name' => 'StatsPlayer']);
 
-        $response = $this->getJson("/api/players/{$guid}", $this->apiKeyHeader());
+        $response = $this->getJson("/api/players/{$anon->id}", $this->apiKeyHeader());
 
         $response->assertStatus(200);
         $response->assertJsonFragment([
-            'guid' => $guid,
+            'id' => $anon->id,
             'player_name' => 'StatsPlayer',
         ]);
-        $response->assertJsonStructure(['data' => ['guid', 'player_name', 'user_id', 'best_lap_times_by_track']]);
+        $response->assertJsonStructure(['data' => ['id', 'player_name', 'user_id', 'best_lap_times_by_track']]);
     }
 
     public function test_get_player_by_unknown_guid_returns_404(): void
     {
-        $response = $this->getJson('/api/players/does-not-exist', $this->apiKeyHeader());
+        $response = $this->getJson('/api/players/99999', $this->apiKeyHeader());
 
         $response->assertStatus(404);
     }
 
     public function test_get_player_requires_api_key(): void
     {
-        AnonymousUser::factory()->create(['guid' => 'some-guid']);
+        $anon = AnonymousUser::factory()->create();
 
-        $response = $this->getJson('/api/players/some-guid');
+        $response = $this->getJson("/api/players/{$anon->id}");
 
         $response->assertStatus(401);
     }

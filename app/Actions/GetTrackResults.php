@@ -30,10 +30,13 @@ class GetTrackResults
             ->selectRaw('MIN(lap_times.id) as id')
             ->groupBy('lap_times.player_guid');
 
-        return LapTime::with('user', 'anonymousUser', 'bike.category')
+        return LapTime::with('bike.category')
             ->joinSub($selectedIds, 'final_ids', function ($join) {
                 $join->on('lap_times.id', '=', 'final_ids.id');
             })
+            ->leftJoin('users', 'users.guid', '=', 'lap_times.player_guid')
+            ->leftJoin('anonymous_users as au', 'au.guid', '=', 'lap_times.player_guid')
+            ->select('lap_times.*', 'users.id as resolved_user_id', 'au.id as resolved_anonymous_user_id')
             ->orderBy('lap_times.lap_time')
             ->get();
     }

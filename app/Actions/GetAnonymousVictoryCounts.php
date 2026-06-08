@@ -5,9 +5,9 @@ namespace App\Actions;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-class GetUsersVictoryCounts
+class GetAnonymousVictoryCounts
 {
-    public function handle(Collection $userIds): Collection
+    public function handle(Collection $anonymousUserIds): Collection
     {
         $bestTimesPerEvent = DB::table('lap_times')
             ->join('events', 'events.id', '=', 'lap_times.event_id')
@@ -25,10 +25,10 @@ class GetUsersVictoryCounts
 
         return DB::table('lap_times as lt')
             ->joinSub($winners, 'w', 'lt.id', '=', 'w.winning_lap_id')
-            ->join('users as u', 'u.guid', '=', 'lt.player_guid')
-            ->whereIn('u.id', $userIds)
-            ->select('u.id', DB::raw('COUNT(*) as cnt'))
-            ->groupBy('u.id')
-            ->pluck('cnt', 'u.id');
+            ->join('anonymous_users as au', 'au.guid', '=', 'lt.player_guid')
+            ->whereIn('au.id', $anonymousUserIds)
+            ->select('au.id', DB::raw('COUNT(*) as cnt'))
+            ->groupBy('au.id')
+            ->pluck('cnt', 'au.id');
     }
 }
