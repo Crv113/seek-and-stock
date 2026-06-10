@@ -19,10 +19,10 @@ class LapTime extends Model
         'event_id',
         'bike_id',
         'player_guid',
-        'player_name'
-        ];
+        'player_name',
+    ];
 
-    public function event():BelongsTo
+    public function event(): BelongsTo
     {
         return $this->belongsTo(Event::class);
     }
@@ -36,5 +36,11 @@ class LapTime extends Model
     {
         return $this->belongsTo(User::class, 'player_guid', 'guid')
             ->select(['id', 'name', 'guid']);
+    }
+
+    public function anonymousUser(): BelongsTo
+    {
+        return $this->belongsTo(AnonymousUser::class, 'player_guid', 'guid')
+            ->select(['id', 'guid', 'player_name']);
     }
 }

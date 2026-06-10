@@ -17,6 +17,6 @@ class GetUsersFavoriteBikes
             ->groupBy('u.id', 'bikes.name')
             ->get()
             ->groupBy('user_id')
-            ->map(fn($bikes) => $bikes->sortByDesc('cnt')->first()->bike_name);
+            ->map(fn ($bikes) => $bikes->sortByDesc('cnt')->first()->bike_name);
     }
 }

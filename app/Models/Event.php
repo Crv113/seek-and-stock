@@ -11,12 +11,14 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Event extends Model
 {
     use HasFactory;
+
     protected $primaryKey = 'id';
+
     protected $fillable = ['name', 'image', 'starting_date', 'ending_date', 'track_id'];
 
     public function getImageAttribute(): ?string
     {
-        return $this->attributes['image'] ? asset('storage/' . $this->attributes['image']) : null;
+        return $this->attributes['image'] ? asset('storage/'.$this->attributes['image']) : null;
     }
 
     public function lapTimes(): HasMany
@@ -37,8 +39,9 @@ class Event extends Model
     public function bestLapTime(): HasOne
     {
         return $this->hasOne(LapTime::class, 'event_id', 'id')
-            ->whereIn('player_guid', function ($query) {
-                $query->select('guid')->from('users');
+            ->where(function ($query) {
+                $query->whereIn('player_guid', fn ($q) => $q->select('guid')->from('users'))
+                      ->orWhereIn('player_guid', fn ($q) => $q->select('guid')->from('anonymous_users'));
             })
             ->orderBy('lap_time')
             ->orderBy('id');

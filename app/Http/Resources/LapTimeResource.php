@@ -16,10 +16,10 @@ class LapTimeResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user_id' => $this->user->id,
-            'player_guid' => $this->player_guid,
+            'user_id' => $this->resolved_user_id ?? $this->user?->id,
+            'anonymous_user_id' => $this->resolved_anonymous_user_id ?? $this->anonymousUser?->id,
             'player_name' => $this->player_name,
-            'average_speed' =>$this->average_speed,
+            'average_speed' => $this->average_speed,
             'lap_time' => $this->lap_time,
             'lap_time_sector_1' => $this->lap_time_sector_1,
             'lap_time_sector_2' => $this->lap_time_sector_2,

@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Session;
 
 class DiscordAuthController extends Controller
 {
     private $clientId;
+
     private $clientSecret;
+
     private $redirectUri;
 
     public function __construct()
@@ -30,7 +30,7 @@ class DiscordAuthController extends Controller
             'redirect_uri' => $this->redirectUri,
             'response_type' => 'code',
             'scope' => 'identify email',
-            'state' => urlencode($redirectUrl)
+            'state' => urlencode($redirectUrl),
         ]);
 
         return redirect("https://discord.com/api/oauth2/authorize?$query");
@@ -41,7 +41,7 @@ class DiscordAuthController extends Controller
         $code = $request->get('code');
         $redirectUrl = urldecode($request->get('state', config('custom.front_app_url')));
 
-        if (!$code) {
+        if (! $code) {
             return response()->json(['error' => 'Authorization code not found'], 400);
         }
 
@@ -59,7 +59,7 @@ class DiscordAuthController extends Controller
         if (isset($tokenData['access_token'])) {
             // Récupérer les infos utilisateur
             $userResponse = Http::withHeaders([
-                'Authorization' => 'Bearer ' . $tokenData['access_token'],
+                'Authorization' => 'Bearer '.$tokenData['access_token'],
             ])->get('https://discord.com/api/users/@me')->json();
 
             $user = User::updateOrCreate(
@@ -69,7 +69,7 @@ class DiscordAuthController extends Controller
                     'discord_global_name' => $userResponse['global_name'],
                     'discord_avatar' => $userResponse['avatar'],
                     'discord_locale' => $userResponse['locale'],
-                    'email' => $userResponse['email']
+                    'email' => $userResponse['email'],
                 ]
             );
 

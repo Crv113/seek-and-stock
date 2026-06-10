@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Event;
-use Illuminate\Http\Request;
 use App\Actions\GetEventResults;
-use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\LapTimeResource;
+use App\Models\Event;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
@@ -19,12 +19,11 @@ class EventController extends Controller
     {
         return Event::with([
             'track:id,name,image',
-            'bestLapTime:id,event_id,player_name,lap_time,player_guid'
+            'bestLapTime:id,event_id,player_name,lap_time,player_guid',
         ])
             ->orderBy('ending_date', 'desc')
             ->get();
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -46,19 +45,19 @@ class EventController extends Controller
             ], 422);
         }
 
-        if($request->file('image')) {
+        if ($request->file('image')) {
             $imagePath = $request->file('image')->store('images/events', 'public');
         }
-
 
         $event = Event::create([
             'name' => $request->input('name'),
             'image' => $imagePath ?? null,
             'track_id' => $request->input('track_id'),
             'starting_date' => $request->input('starting_date'),
-            'ending_date' => $request->input('ending_date')
+            'ending_date' => $request->input('ending_date'),
         ]);
         $event->load(['track:id,name,image']);
+
         return response()->json($event, 201);
     }
 
@@ -69,7 +68,7 @@ class EventController extends Controller
     {
         return $event->load([
             'track:id,name,image',
-            'bestLapTime:id,event_id,player_name,lap_time,player_guid'
+            'bestLapTime:id,event_id,player_name,lap_time,player_guid',
         ]);
     }
 
@@ -93,6 +92,7 @@ class EventController extends Controller
             ], 422);
         }
         $event->update($request->all());
+
         return response()->json($event);
     }
 
@@ -103,10 +103,12 @@ class EventController extends Controller
     {
         dd('no no');
         $event->delete();
+
         return response()->json(null, 204);
     }
 
-    public function getEventResults($id, GetEventResults $action) {
+    public function getEventResults($id, GetEventResults $action)
+    {
         return LapTimeResource::collection($action->handle($id));
     }
 
