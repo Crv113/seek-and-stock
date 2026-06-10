@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Category extends Model
 {
     use HasFactory;
+
     protected $fillable = ['name'];
 
-    public function bikes():HasMany
+    public function bikes(): HasMany
     {
         return $this->hasMany(Bike::class);
     }
-
 }

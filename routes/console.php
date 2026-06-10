@@ -2,7 +2,6 @@
 
 use App\Jobs\SeekAndStockJob;
 use App\Services\XmlDataService;
-
 use Illuminate\Support\Facades\Schedule;
 
 //Schedule::call(function () {

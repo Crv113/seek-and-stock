@@ -14,8 +14,9 @@ class GetTrackResults
             ->join('events', 'events.id', '=', 'lap_times.event_id')
             ->select('lap_times.player_guid', DB::raw('MIN(lap_times.lap_time) as min_lap_time'))
             ->where('events.track_id', $track->id)
-            ->whereIn('lap_times.player_guid', function ($query) {
-                $query->select('guid')->from('users');
+            ->where(function ($query) {
+                $query->whereIn('lap_times.player_guid', fn ($q) => $q->select('guid')->from('users'))
+                      ->orWhereIn('lap_times.player_guid', fn ($q) => $q->select('guid')->from('anonymous_users'));
             })
             ->groupBy('lap_times.player_guid');
 
@@ -29,11 +30,15 @@ class GetTrackResults
             ->selectRaw('MIN(lap_times.id) as id')
             ->groupBy('lap_times.player_guid');
 
-        return LapTime::with('user', 'bike.category')
+        return LapTime::with('bike.category')
             ->joinSub($selectedIds, 'final_ids', function ($join) {
                 $join->on('lap_times.id', '=', 'final_ids.id');
             })
+            ->leftJoin('users', 'users.guid', '=', 'lap_times.player_guid')
+            ->leftJoin('anonymous_users as au', 'au.guid', '=', 'lap_times.player_guid')
+            ->select('lap_times.*', 'users.id as resolved_user_id', 'au.id as resolved_anonymous_user_id')
             ->orderBy('lap_times.lap_time')
+            ->orderBy('lap_times.id')
             ->get();
     }
 }

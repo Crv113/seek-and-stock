@@ -29,7 +29,7 @@ return [
         'https://dev.mxbtiming.com',
         'https://dev.mxbtiming.com:8443',
         'https://api.dev.mxbtiming.com',
-        'https://api.dev.mxbtiming.com:8443'
+        'https://api.dev.mxbtiming.com:8443',
     ],
 
     'allowed_origins_patterns' => [],

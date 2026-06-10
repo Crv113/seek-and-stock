@@ -8,7 +8,6 @@ use App\Http\Resources\LapTimeResource;
 use App\Models\Track;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class TrackController extends Controller
@@ -22,7 +21,7 @@ class TrackController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048'
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -42,7 +41,7 @@ class TrackController extends Controller
         return response()->json([
             'id' => $track->id,
             'name' => $track->name,
-            'image' => $track->image
+            'image' => $track->image,
         ], 201);
     }
 
@@ -60,7 +59,7 @@ class TrackController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'string',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048'
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -71,11 +70,11 @@ class TrackController extends Controller
         }
         $track = Track::query()->findOrFail($id);
 
-        if($request->has('name')) {
+        if ($request->has('name')) {
             $track->name = $request->input('name');
         }
 
-        if($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             $track->image = $request->file('image')->store('images/tracks', 'public');
         }
 
@@ -84,7 +83,7 @@ class TrackController extends Controller
         return response()->json([
             'id' => $track->id,
             'name' => $track->name,
-            'image' => $track->image
+            'image' => $track->image,
         ], 201);
     }
 }

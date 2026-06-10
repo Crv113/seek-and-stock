@@ -28,7 +28,7 @@ class EventUserController extends Controller
         $user = auth()->user();
         $event = Event::findOrFail($eventId);
 
-        if (!$event->users()->where('user_id', $user->id)->exists()) {
+        if (! $event->users()->where('user_id', $user->id)->exists()) {
             return response()->json(['message' => 'You are not registered for this event.'], 400);
         }
 
@@ -36,5 +36,4 @@ class EventUserController extends Controller
 
         return response()->json(['message' => 'Unsubscribe successful'], 200);
     }
-
 }

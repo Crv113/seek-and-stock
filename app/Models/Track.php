@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Track extends Model
 {
@@ -17,6 +16,6 @@ class Track extends Model
 
     public function getImageAttribute(): ?string
     {
-        return $this->attributes['image'] ? asset('storage/' . $this->attributes['image']) : null;
+        return $this->attributes['image'] ? asset('storage/'.$this->attributes['image']) : null;
     }
 }

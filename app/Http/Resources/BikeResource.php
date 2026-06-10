@@ -15,9 +15,9 @@ class BikeResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-          'id' => $this->id,
-          'name' => $this->name,
-          'category' => new CategoryResource($this->category),
+            'id' => $this->id,
+            'name' => $this->name,
+            'category' => new CategoryResource($this->category),
         ];
     }
 }

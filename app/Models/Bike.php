@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Bike extends Model
 {
     use HasFactory;
+
     protected $fillable = ['name', 'category_id'];
 
     public function category(): BelongsTo
@@ -17,9 +18,8 @@ class Bike extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function lapTimes():HasMany
+    public function lapTimes(): HasMany
     {
         return $this->hasMany(LapTime::class);
     }
-
 }
