@@ -36,6 +36,7 @@ Route::middleware([VerifyApiKey::class])->group(function () {
     Route::get('/events/{event}', [EventController::class, 'show']);
     Route::get('/events/{event}/users', [EventController::class, 'listUsersGuid']);
     Route::get('events/{id}/results', [EventController::class, 'getEventResults']);
+    Route::get('/events/{event}/categories', [EventController::class, 'getEventCategories']);
 
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/users/{user}', [UserController::class, 'show']);

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Actions\GetEventCategories;
 use App\Actions\GetEventResults;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CursorPaginationRequest;
+use App\Http\Requests\GetEventResultsRequest;
+use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\LapTimeResource;
 use App\Models\Event;
 use App\Support\Pagination\CursorPaginatorHelper;
@@ -109,12 +111,17 @@ class EventController extends Controller
         return response()->json(null, 204);
     }
 
-    public function getEventResults($id, CursorPaginationRequest $request, GetEventResults $action)
+    public function getEventResults($id, GetEventResultsRequest $request, GetEventResults $action)
     {
         return CursorPaginatorHelper::toResponse(
-            $action->handle($id),
+            $action->handle($id, $request->validated('category_id')),
             fn ($lapTime) => (new LapTimeResource($lapTime))->toArray(request())
         );
+    }
+
+    public function getEventCategories(Event $event, GetEventCategories $action)
+    {
+        return new CategoryCollection($action->handle($event->id));
     }
 
     public function listUsersGuid(Event $event): JsonResponse
