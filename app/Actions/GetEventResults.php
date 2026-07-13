@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class GetEventResults
 {
-    public function handle($eventId)
+    public function handle($eventId, ?int $categoryId = null)
     {
         // Sous-requête : on sélectionne le meilleur temps par joueur (MIN lap_time)
         $minLapTimes = DB::table('lap_times')
@@ -15,7 +15,11 @@ class GetEventResults
             ->where('event_id', $eventId)
             ->where(function ($query) {
                 $query->whereIn('player_guid', fn ($q) => $q->select('guid')->from('users'))
-                      ->orWhereIn('player_guid', fn ($q) => $q->select('guid')->from('anonymous_users'));
+                    ->orWhereIn('player_guid', fn ($q) => $q->select('guid')->from('anonymous_users'));
+            })
+            ->when($categoryId !== null, function ($query) use ($categoryId) {
+                $query->join('bikes', 'bikes.id', '=', 'lap_times.bike_id')
+                    ->where('bikes.category_id', $categoryId);
             })
             ->groupBy('player_guid');
 
@@ -24,6 +28,10 @@ class GetEventResults
             ->joinSub($minLapTimes, 'best_laps', function ($join) {
                 $join->on('lap_times.player_guid', '=', 'best_laps.player_guid')
                     ->on('lap_times.lap_time', '=', 'best_laps.min_lap_time');
+            })
+            ->when($categoryId !== null, function ($query) use ($categoryId) {
+                $query->join('bikes', 'bikes.id', '=', 'lap_times.bike_id')
+                    ->where('bikes.category_id', $categoryId);
             })
             ->selectRaw('MIN(lap_times.id) as id')
             ->groupBy('lap_times.player_guid');
