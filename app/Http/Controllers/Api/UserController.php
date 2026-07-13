@@ -8,8 +8,10 @@ use App\Actions\GetUsersParticipationCounts;
 use App\Actions\GetUsersVictoryCounts;
 use App\Actions\MergeAnonymousLaptimes;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CursorPaginationRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Support\Pagination\CursorPaginatorHelper;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,20 +20,21 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     public function index(
+        CursorPaginationRequest $request,
         GetUsersParticipationCounts $participationCounts,
         GetUsersVictoryCounts $victoryCounts,
         GetUsersFavoriteBikes $favoriteBikes,
     ) {
-        $users = User::select('id', 'name', 'discord_id', 'discord_global_name', 'discord_username', 'discord_avatar')
-            ->orderBy('name')
-            ->get();
+        $paginator = User::orderBy('created_at')
+            ->orderBy('id')
+            ->cursorPaginate(config('custom.default_page_size'));
 
-        $userIds = $users->pluck('id');
+        $userIds = $paginator->getCollection()->pluck('id');
         $participations = $participationCounts->handle($userIds);
         $victories = $victoryCounts->handle($userIds);
         $bikes = $favoriteBikes->handle($userIds);
 
-        return $users->map(fn ($user) => [
+        return CursorPaginatorHelper::toResponse($paginator, fn ($user) => [
             'id' => $user->id,
             'name' => $user->name,
             'discord_id' => $user->discord_id,

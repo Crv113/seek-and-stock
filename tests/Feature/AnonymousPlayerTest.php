@@ -146,7 +146,7 @@ class AnonymousPlayerTest extends TestCase
         $response = $this->getJson('/api/players', $this->apiKeyHeader());
 
         $response->assertStatus(200);
-        $data = $response->json();
+        $data = $response->json('data');
         $names = collect($data)->pluck('player_name');
         $this->assertTrue($names->contains('AnonOne'));
         $this->assertTrue($names->contains('AnonTwo'));
