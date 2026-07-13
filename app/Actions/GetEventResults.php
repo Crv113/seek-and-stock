@@ -38,7 +38,7 @@ class GetEventResults
             ->select('lap_times.*', 'users.id as resolved_user_id', 'au.id as resolved_anonymous_user_id')
             ->orderBy('lap_times.lap_time')
             ->orderBy('lap_times.id')
-            ->get();
+            ->cursorPaginate(config('custom.default_page_size'));
 
     }
 }

@@ -9,4 +9,5 @@ return [
     'discord_redirect_uri' => env('DISCORD_REDIRECT_URI'),
     'front_app_url' => env('FRONT_APP_URL'),
     'super_admin_email' => env('SUPER_ADMIN_EMAIL'),
+    'default_page_size' => (int) env('DEFAULT_PAGE_SIZE', 100),
 ];
