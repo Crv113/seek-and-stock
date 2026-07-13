@@ -83,7 +83,9 @@ class EventCategoriesTest extends TestCase
         $response = $this->getJson("/api/events/{$event->id}/categories", $this->apiKeyHeader());
 
         $response->assertStatus(200);
-        $names = collect($response->json('data'))->pluck('name')->values()->all();
+        $this->assertIsArray($response->json());
+        $this->assertArrayNotHasKey('data', $response->json());
+        $names = collect($response->json())->pluck('name')->values()->all();
 
         $this->assertSame(['Alpha', 'Mid', 'Zeta'], $names);
     }
@@ -95,7 +97,7 @@ class EventCategoriesTest extends TestCase
         $response = $this->getJson("/api/events/{$event->id}/categories", $this->apiKeyHeader());
 
         $response->assertStatus(200);
-        $response->assertJsonCount(0, 'data');
+        $response->assertExactJson([]);
     }
 
     public function test_event_categories_returns_404_when_event_does_not_exist(): void
@@ -119,7 +121,7 @@ class EventCategoriesTest extends TestCase
         $response = $this->getJson("/api/events/{$event->id}/categories", $this->apiKeyHeader());
 
         $response->assertStatus(200);
-        $names = collect($response->json('data'))->pluck('name')->values()->all();
+        $names = collect($response->json())->pluck('name')->values()->all();
 
         $this->assertSame(['Known'], $names);
     }
@@ -135,7 +137,7 @@ class EventCategoriesTest extends TestCase
         $response = $this->getJson("/api/events/{$event->id}/categories", $this->apiKeyHeader());
 
         $response->assertStatus(200);
-        $names = collect($response->json('data'))->pluck('name')->values()->all();
+        $names = collect($response->json())->pluck('name')->values()->all();
 
         $this->assertSame(['AnonCategory'], $names);
     }

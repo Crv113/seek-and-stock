@@ -6,7 +6,7 @@ use App\Actions\GetEventCategories;
 use App\Actions\GetEventResults;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GetEventResultsRequest;
-use App\Http\Resources\CategoryResource;
+use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\LapTimeResource;
 use App\Models\Event;
 use App\Support\Pagination\CursorPaginatorHelper;
@@ -121,7 +121,7 @@ class EventController extends Controller
 
     public function getEventCategories(Event $event, GetEventCategories $action)
     {
-        return CategoryResource::collection($action->handle($event->id));
+        return new CategoryCollection($action->handle($event->id));
     }
 
     public function listUsersGuid(Event $event): JsonResponse
