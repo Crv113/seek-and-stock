@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AnonymousPlayerController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\LapTimeController;
+use App\Http\Controllers\Api\ServerStatusController;
 use App\Http\Controllers\Api\TrackController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Middleware\RoleMiddleware;
@@ -43,5 +44,8 @@ Route::middleware([VerifyApiKey::class])->group(function () {
 
     Route::get('/players', [AnonymousPlayerController::class, 'index']);
     Route::get('/players/{anonymousUser}', [AnonymousPlayerController::class, 'show']);
+
+    Route::post('/server-status', [ServerStatusController::class, 'update']);
+    Route::get('/server-status', [ServerStatusController::class, 'show']);
 
 });
